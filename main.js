@@ -116,7 +116,7 @@
 
   window.addEventListener('scroll', scrollActive)
 
-<script>
+
 document.getElementById('contactForm').addEventListener('submit', function(event) {
     event.preventDefault(); // Empêche l'envoi traditionnel du formulaire
 
@@ -138,4 +138,4 @@ document.getElementById('contactForm').addEventListener('submit', function(event
         alert('Sorry, something went wrong. Please try again later.');
     });
 });
-</script>
+
