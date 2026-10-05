@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html lang="fr" class="dark" data-theme="dark" style="color-scheme: dark;">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio • Rayan Touhmou</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        background: '#09090b',
+                        foreground: '#fafafa',
+                        card: '#18181b',
+                        primary: {
+                            DEFAULT: '#f97316',
+                            foreground: '#ffffff',
+                        },
+                        muted: {
+                            DEFAULT: '#27272a',
+                            foreground: '#a1a1aa',
+                        }
+                    },
+                    keyframes: {
+                        fadeInUp: {
+                            '0%': { opacity: '0', transform: 'translateY(30px) scale(0.98)' },
+                            '100%': { opacity: '1', transform: 'translateY(0) scale(1)' },
+                        },
+                        pulseSlow: {
+                            '0%, 100%': { transform: 'scale(1)', opacity: '0.15' },
+                            '50%': { transform: 'scale(1.1)', opacity: '0.35' },
+                        },
+                        gridMove: {
+                            '0%': { transform: 'translateY(0px)' },
+                            '100%': { transform: 'translateY(40px)' },
+                        },
+                        floatImage: {
+                            '0%, 100%': { transform: 'translateY(0px)' },
+                            '50%': { transform: 'translateY(-15px)' },
+                        },
+                        glitchDown1: {
+                            '0%': { top: '-10%', opacity: '0' },
+                            '10%': { opacity: '0.8' },
+                            '40%': { opacity: '0.8' },
+                            '50%': { top: '110%', opacity: '0' },
+                            '100%': { top: '110%', opacity: '0' }
+                        },
+                        glitchDown2: {
+                            '0%': { top: '-10%', opacity: '0' },
+                            '35%': { top: '-10%', opacity: '0' },
+                            '45%': { opacity: '0.9' },
+                            '75%': { opacity: '0.9' },
+                            '85%': { top: '110%', opacity: '0' },
+                            '100%': { top: '110%', opacity: '0' }
+                        }
+                    },
+                    animation: {
+                        fadeInUp: 'fadeInUp 1s cubic-bezier(0.16, 1, 0.3, 1) forwards',
+                        pulseSlow: 'pulseSlow 8s ease-in-out infinite',
+                        gridMove: 'gridMove 15s linear infinite',
+                        float: 'floatImage 5s ease-in-out infinite',
+                        glitch1: 'glitchDown1 4s cubic-bezier(0.4, 0, 0.2, 1) infinite',
+                        glitch2: 'glitchDown2 4s cubic-bezier(0.4, 0, 0.2, 1) infinite',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Active le défilement fluide pour toute la page */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Classes pour les animations au scroll des textes */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px) scale(0.98);
+            transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+
+        /* Effet de délai en cascade */
+        .delay-100 { transition-delay: 100ms; }
+        .delay-200 { transition-delay: 200ms; }
+        .delay-300 { transition-delay: 300ms; }
+
+        /* Motif de grille géométrique en arrière-plan */
+        .bg-grid-pattern {
+            background-size: 40px 40px;
+            background-image: 
+                linear-gradient(to right, rgba(249, 115, 22, 0.08) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(249, 115, 22, 0.08) 1px, transparent 1px);
+        }
+
+        /* Animation des icônes au survol */
+        .group:hover .icon-box {
+            transform: rotate(360deg) scale(1.15);
+            box-shadow: 0 0 25px rgba(249, 115, 22, 0.7);
+            border-color: rgba(249, 115, 22, 0.9);
+            background-color: rgba(249, 115, 22, 0.2);
+        }
+        
+        .icon-box {
+            transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.4s ease, border-color 0.4s ease, background-color 0.4s ease;
+        }
+
+        /* Style des cartes sans latence */
+        .interactive-card {
+            position: relative;
+            overflow: hidden;
+            transform-style: preserve-3d;
+            will-change: transform;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .interactive-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(800px circle at var(--mouse-x, 0px) var(--mouse-y, 0px), rgba(249, 115, 22, 0.12), transparent 40%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+        }
+
+        .interactive-card:hover::before {
+            opacity: 1;
+        }
+
+        /* Curseur lumineux fluide global */
+        #cursor-glow {
+            pointer-events: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 350px;
+            height: 350px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(249, 115, 22, 0.18), transparent 70%);
+            z-index: 99;
+            mix-blend-mode: screen;
+            will-change: transform;
+        }
+
+        /* Style spécifique aux boutons de contact */
+        .contact-btn {
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .contact-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(249, 115, 22, 0.2), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .contact-btn:hover::before {
+            left: 100%;
+        }
+
+        .contact-btn:hover {
+            transform: translateY(-4px) scale(1.03);
+            border-color: rgba(249, 115, 22, 0.6);
+            box-shadow: 0 10px 30px -10px rgba(249, 115, 22, 0.3);
+        }
+
+        /* Toast notification pour copie */
+        #toast {
+            transition: opacity 0.3s ease, transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+    </style>
+</head>
+<body class="min-h-screen bg-background text-foreground overflow-x-hidden selection:bg-primary/35 selection:text-primary relative">
+
+    <!-- Toast de notification -->
+    <div id="toast" class="fixed bottom-6 right-6 z-50 flex items-center gap-3 rounded-2xl border border-primary/40 bg-card/95 px-5 py-3.5 text-sm font-medium text-foreground shadow-2xl shadow-primary/20 backdrop-blur-xl opacity-0 pointer-events-none translate-y-4">
+        <div class="w-2.5 h-2.5 rounded-full bg-primary animate-ping"></div>
+        <span id="toast-message">Texte copié dans le presse-papier !</span>
+    </div>
+
+    <!-- Curseur lumineux interactif global -->
+    <div id="cursor-glow"></div>
+
+    <!-- Ligne verticale de suivi au scroll -->
+    <div aria-hidden="true" class="fixed right-8 top-0 bottom-0 z-40 hidden md:flex items-center justify-center pointer-events-none">
+        <div class="absolute w-[2px] h-full bg-white/5 rounded-full"></div>
+        <div id="scroll-line" class="absolute top-0 w-[2px] bg-gradient-to-b from-primary/50 via-primary to-orange-400 rounded-full shadow-[0_0_12px_rgba(249,115,22,0.8)]" style="height: 0%;">
+            <div class="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 w-3 h-3 bg-primary rounded-full shadow-[0_0_15px_#f97316] ring-4 ring-primary/20"></div>
+        </div>
+    </div>
+
+    <!-- Fond ambiant lumineux et grille animée -->
+    <div aria-hidden="true" class="pointer-events-none fixed inset-0 -z-10 overflow-hidden">
+        <div class="absolute inset-0 bg-grid-pattern opacity-70 animate-gridMove"></div>
+        <div class="absolute -left-[10%] top-[-10%] h-[50vh] w-[50vh] rounded-full bg-primary/15 blur-[120px] animate-pulseSlow"></div>
+        <div class="absolute -right-[10%] bottom-[10%] h-[50vh] w-[50vh] rounded-full bg-orange-600/10 blur-[150px] animate-pulseSlow" style="animation-delay: 4s;"></div>
+    </div>
+
+    <!-- En-tête / Navigation -->
+    <header class="fixed inset-x-0 top-0 z-50 backdrop-blur-xl bg-background/80 border-b border-white/10 transition-all">
+        <div class="max-w-6xl mx-auto flex items-center justify-between px-6 py-4">
+            <a href="#" class="font-bold text-lg tracking-tight flex items-center gap-2 group">
+                <span class="h-3 w-3 rounded-full bg-primary animate-pulse group-hover:scale-125 transition-transform"></span>
+                <span>Rayan<span class="text-orange-500">.portfolio</span></span>
+            </a>
+
+            <!-- Navigation Desktop -->
+            <nav class="hidden md:flex items-center gap-6 text-sm font-medium text-muted-foreground">
+                <a href="#about" class="hover:text-primary transition-colors">À propos</a>
+                <a href="#skills" class="hover:text-primary transition-colors">Compétences</a>
+                <a href="#projects" class="hover:text-primary transition-colors">Projets</a>
+                <a href="#tools" class="hover:text-primary transition-colors">Outils & Bots</a>
+                <a href="#science" class="hover:text-primary transition-colors">Sciences & Tech</a>
+                <a href="#contact" class="hover:text-primary transition-colors">Contact</a>
+            </nav>
+
+            <!-- Bouton Hamburger Mobile -->
+            <button id="menu-btn" aria-label="Menu Mobile" class="md:hidden p-2 rounded-xl border border-white/10 bg-card text-muted-foreground hover:text-primary transition-colors">
+                <i data-lucide="menu" class="w-6 h-6"></i>
+            </button>
+        </div>
+
+        <!-- Menu Déroulant Mobile -->
+        <div id="mobile-menu" class="hidden md:hidden border-b border-white/10 bg-background/95 backdrop-blur-2xl px-6 py-4 flex flex-col gap-4 text-sm font-medium text-muted-foreground">
+            <a href="#about" class="mobile-link hover:text-primary transition-colors">À propos</a>
+            <a href="#skills" class="mobile-link hover:text-primary transition-colors">Compétences</a>
+            <a href="#projects" class="mobile-link hover:text-primary transition-colors">Projets</a>
+            <a href="#tools" class="mobile-link hover:text-primary transition-colors">Outils & Bots</a>
+            <a href="#science" class="mobile-link hover:text-primary transition-colors">Sciences & Tech</a>
+            <a href="#contact" class="mobile-link hover:text-primary transition-colors">Contact</a>
+        </div>
+    </header>
+
+    <!-- Section Héroïque (Hero) -->
+    <section id="about" class="relative pt-36 pb-24 md:pt-48 md:pb-32 px-6 max-w-6xl mx-auto animate-fadeInUp">
+        <div class="grid md:grid-cols-2 gap-12 items-center">
+            <div>
+                <div class="inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/10 px-3.5 py-1.5 text-xs font-bold uppercase tracking-widest text-primary mb-6 backdrop-blur-xl shadow-lg shadow-primary/10">
+                    Développeur Freelance • Création de sites web
+                </div>
+                <h1 class="text-4xl md:text-6xl font-extrabold tracking-tight leading-[1.05]">
+                    Concevoir des <span class="text-orange-500">sites web sur-mesure</span> avec rigueur et créativité.
+                </h1>
+                <p class="mt-6 text-lg text-muted-foreground leading-relaxed">
+                    Freelance passionné par le développement web, la cybersécurité, la modélisation 3D et l'intelligence artificielle, préparant son entrée en Sciences de la nature.
+                </p>
+                <div class="mt-10 flex flex-wrap gap-4">
+                    <a href="#projects" class="inline-flex items-center justify-center rounded-xl bg-primary text-primary-foreground px-6 py-3 text-sm font-medium shadow-lg shadow-primary/25 hover:scale-105 hover:bg-orange-600 active:scale-95 transition-all">
+                        Voir mes projets
+                    </a>
+                    <a href="#contact" class="inline-flex items-center justify-center rounded-xl border border-white/10 bg-card px-6 py-3 text-sm font-medium hover:bg-muted hover:border-white/20 active:scale-95 transition-all">
+                        Me contacter
+                    </a>
+                </div>
+            </div>
+
+            <!-- Image avec effet flottant et glitch -->
+            <div class="flex justify-center">
+                <div class="relative animate-float rounded-3xl overflow-hidden border border-white/10 shadow-2xl shadow-primary/10 max-w-full">
+                    <img src="watermarked_img_6141117333949703781.jpg" alt="Aperçu des compétences et domaines" class="block w-full h-auto object-cover">
+                    <div class="absolute left-0 right-0 h-4 bg-gradient-to-r from-transparent via-orange-500/60 to-transparent pointer-events-none animate-glitch1 backdrop-blur-[2px] mix-blend-screen"></div>
+                    <div class="absolute left-0 right-0 h-3 bg-gradient-to-r from-transparent via-white/50 to-transparent pointer-events-none animate-glitch2 backdrop-blur-[2px] mix-blend-screen"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Compétences & Technologies -->
+    <section id="skills" class="py-20 max-w-6xl mx-auto px-6 border-t border-white/10">
+        <div class="text-center max-w-2xl mx-auto mb-16 reveal">
+            <span class="text-xs font-bold uppercase tracking-[0.3em] text-primary">Expertise technique</span>
+            <h2 class="text-3xl md:text-5xl font-extrabold mt-3">Compétences & Domaines</h2>
+            <p class="text-muted-foreground mt-3">Un aperçu complet de mes langages, frameworks et outils de prédilection.</p>
+        </div>
+
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+            <div class="interactive-card group p-6 rounded-3xl border border-white/10 bg-card/50 backdrop-blur-xl hover:border-primary/50">
+                <div class="icon-box w-12 h-12 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center text-primary mb-4">
+                    <i data-lucide="layout" class="w-6 h-6"></i>
+                </div>
+                <div class="text-primary font-bold text-lg mb-2">Web Frontend</div>
+                <p class="text-xs text-muted-foreground leading-relaxed">HTML, CSS, XHTML, JavaScript, React</p>
+            </div>
+            <div class="interactive-card group p-6 rounded-3xl border border-white/10 bg-card/50 backdrop-blur-xl hover:border-primary/50">
+                <div class="icon-box w-12 h-12 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center text-primary mb-4">
+                    <i data-lucide="server" class="w-6 h-6"></i>
+                </div>
+                <div class="text-primary font-bold text-lg mb-2">Backend & Logiciel</div>
+                <p class="text-xs text-muted-foreground leading-relaxed">PHP, C#, Python, Firebase</p>
+            </div>
+            <div class="interactive-card group p-6 rounded-3xl border border-white/10 bg-card/50 backdrop-blur-xl hover:border-primary/50">
+                <div class="icon-box w-12 h-12 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center text-primary mb-4">
+                    <i data-lucide="box" class="w-6 h-6"></i>
+                </div>
+                <div class="text-primary font-bold text-lg mb-2">3D & Design</div>
+                <p class="text-xs text-muted-foreground leading-relaxed">Modélisation 3D avec Blender</p>
+            </div>
+            <div class="interactive-card group p-6 rounded-3xl border border-white/10 bg-card/50 backdrop-blur-xl hover:border-primary/50">
+                <div class="icon-box w-12 h-12 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center text-primary mb-4">
+                    <i data-lucide="shield-check" class="w-6 h-6"></i>
+                </div>
+                <div class="text-primary font-bold text-lg mb-2">Sécurité & Systèmes</div>
+                <p class="text-xs text-muted-foreground leading-relaxed">Cybersécurité, Bots Discord & Automatisation</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Projets Web & Applications -->
+    <section id="projects" class="py-20 max-w-6xl mx-auto px-6 border-t border-white/10">
+        <div class="text-center max-w-2xl mx-auto mb-16 reveal">
+            <span class="text-xs font-bold uppercase tracking-[0.3em] text-primary">Portfolio</span>
+            <h2 class="text-3xl md:text-5xl font-extrabold mt-3">Projets Web & Applications</h2>
+            <p class="text-muted-foreground mt-3">Découvrez mes plateformes en ligne, interfaces interactives et réalisations en freelance.</p>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-6">
+            <!-- Site Principal (WebLion) -->
+            <div class="interactive-card group rounded-3xl border border-white/10 bg-card/60 p-6 backdrop-blur-xl hover:border-primary/50 hover:-translate-y-2 hover:shadow-2xl hover:shadow-primary/20 transition-all duration-300 flex flex-col justify-between">
+                <div>
+                    <div class="flex items-center justify-between mb-4">
+                        <span class="text-xs font-mono px-3 py-1 rounded-full bg-primary/10 text-primary border border-primary/20">Site Vitrine</span>
+                        <div class="icon-box w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-primary">
+                            <i data-lucide="globe" class="w-5 h-5"></i>
+                        </div>
+                    </div>
+                    <h3 class="text-xl font-bold mt-4 group-hover:text-orange-400 transition-colors">Site Web WebLion</h3>
+                    <p class="mt-2 text-muted-foreground text-sm leading-relaxed">
+                        Site vitrine d'une entreprise imaginaire conçu et développé avec soin.
+                    </p>
+                </div>
+                <div class="mt-6">
+                    <a href="https://weblioncommunauty.github.io/site/" target="_blank" class="inline-flex items-center gap-2 text-xs font-bold text-orange-500 hover:text-orange-400 transition-colors">
+                        Visiter le site →
+                    </a>
+                </div>
+            </div>
+
+            <!-- Nefraim -->
+            <div class="interactive-card group rounded-3xl border border-white/10 bg-card/60 p-6 backdrop-blur-xl hover:border-primary/50 hover:-translate-y-2 hover:shadow-2xl hover:shadow-primary/20 transition-all duration-300 flex flex-col justify-between">
+                <div>
+                    <div class="flex items-center justify-between mb-4">
+                        <span class="text-xs font-mono px-3 py-1 rounded-full bg-primary/10 text-primary border border-primary/20">Interface</span>
+                        <div class="icon-box w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-primary">
+                            <i data-lucide="layout-template" class="w-5 h-5"></i>
+                        </div>
+                    </div>
+                    <h3 class="text-xl font-bold mt-4 group-hover:text-orange-400 transition-colors">Nefraim</h3>
+                    <p class="mt-2 text-muted-foreground text-sm leading-relaxed">
+                        Projet web interactif hébergé sur GitHub Pages.
+                    </p>
+                </div>
+                <div class="mt-6">
+                    <a href="https://rayant-dev.github.io/nefraim/" target="_blank" class="inline-flex items-center gap-2 text-xs font-bold text-orange-500 hover:text-orange-400 transition-colors">
+                        Visiter le site →
+                    </a>
+                </div>
+            </div>
+
+            <!-- Vérificateur de Plagiat -->
+            <div class="interactive-card group rounded-3xl border border-white/10 bg-card/60 p-6 backdrop-blur-xl hover:border-primary/50 hover:-translate-y-2 hover:shadow-2xl hover:shadow-primary/20 transition-all duration-300 flex flex-col justify-between">
+                <div>
+                    <div class="flex items-center justify-between mb-4">
+                        <span class="text-xs font-mono px-3 py-1 rounded-full bg-primary/10 text-primary border border-primary/20">Utilitaire Web</span>
+                        <div class="icon-box w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-primary">
+                            <i data-lucide="file-search" class="w-5 h-5"></i>
+                        </div>
+                    </div>
+                    <h3 class="text-xl font-bold mt-4 group-hover:text-orange-400 transition-colors">Plagiarism Check</h3>
+                    <p class="mt-2 text-muted-foreground text-sm leading-relaxed">
+                        Outil web de vérification et d'analyse de texte.
+                    </p>
+                </div>
+                <div class="mt-6">
+                    <a href="https://rayant-dev.github.io/PlagiarismCheck/" target="_blank" class="inline-flex items-center gap-2 text-xs font-bold text-orange-500 hover:text-orange-400 transition-colors">
+                        Visiter l'outil →
+                    </a>
+                </div>
+            </div>
+
+            <!-- Calculatrices -->
+            <div class="interactive-card group rounded-3xl border border-white/10 bg-card/60 p-6 backdrop-blur-xl hover:border-primary/50 hover:-translate-y-2 hover:shadow-2xl hover:shadow-primary/20 transition-all duration-300 flex flex-col justify-between">
+                <div>
+                    <div class="flex items-center justify-between mb-4">
+                        <span class="text-xs font-mono px-3 py-1 rounded-full bg-primary/10 text-primary border border-primary/20">JavaScript</span>
+                        <div class="icon-box w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-primary">
+                            <i data-lucide="calculator" class="w-5 h-5"></i>
+                        </div>
+                    </div>
+                    <h3 class="text-xl font-bold mt-4 group-hover:text-orange-400 transition-colors">Calculatrices Web</h3>
+                    <p class="mt-2 text-muted-foreground text-sm leading-relaxed">
+                        Applications de calcul interactives (versions WebLion et Rayant-Dev).
+                    </p>
+                </div>
+                <div class="mt-6 flex gap-4">
+                    <a href="https://weblioncommunauty.github.io/calculator/" target="_blank" class="text-xs font-bold text-orange-500 hover:text-orange-400 transition-colors">Calculatrice 1 →</a>
+                    <a href="https://rayant-dev.github.io/calculator/" target="_blank" class="text-xs font-bold text-orange-500 hover:text-orange-400 transition-colors">Calculatrice 2 →</a>
+                </div>
+            </div>
+
+            <!-- Horloge Numérique -->
+            <div class="interactive-card group rounded-3xl border border-white/10 bg-card/60 p-6 backdrop-blur-xl hover:border-primary/50 hover:-translate-y-2 hover:shadow-2xl hover:shadow-primary/20 transition-all duration-300 flex flex-col justify-between">
+                <div>
+                    <div class="flex items-center justify-between mb-4">
+                        <span class="text-xs font-mono px-3 py-1 rounded-full bg-primary/10 text-primary border border-primary/20">HTML / CSS / JS</span>
+                        <div class="icon-box w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-primary">
+                            <i data-lucide="clock" class="w-5 h-5"></i>
+                        </div>
+                    </div>
+                    <h3 class="text-xl font-bold mt-4 group-hover:text-orange-400 transition-colors">Digital Clock</h3>
+                    <p class="mt-2 text-muted-foreground text-sm leading-relaxed">
+                        Horloge numérique élégante avec effet de flou arrière-plan (glassmorphism) et dégradé dynamique.
+                    </p>
+                </div>
+                <div class="mt-6">
+                    <a href="https://rayant-dev.github.io/clock/" target="_blank" class="inline-flex items-center gap-2 text-xs font-bold text-orange-500 hover:text-orange-400 transition-colors">
+                        Visiter l'horloge →
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Outils, IA & Bots -->
+    <section id="tools" class="py-20 max-w-6xl mx-auto px-6 border-t border-white/10">
+        <div class="text-center max-w-2xl mx-auto mb-16 reveal">
+            <span class="text-xs font-bold uppercase tracking-[0.3em] text-primary">Intelligence & Bots</span>
+            <h2 class="text-3xl md:text-5xl font-extrabold mt-3">Projets Avancés & IA</h2>
+            <p class="text-muted-foreground mt-3">Intégration d'API d'intelligence artificielle et développement de bots utilitaires.</p>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-6">
+            <!-- Reconnaissance d'émotions par Webcam -->
+            <div class="interactive-card group rounded-3xl border border-white/10 bg-card/60 p-8 backdrop-blur-xl hover:border-primary/50 hover:-translate-y-2 hover:shadow-2xl hover:shadow-primary/20 transition-all duration-300">
+                <div class="flex items-center justify-between mb-6">
+                    <span class="text-xs font-mono px-3 py-1 rounded-full bg-primary/10 text-primary border border-primary/20">Machine Learning / Vision</span>
+                    <div class="icon-box w-12 h-12 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center text-primary">
+                        <i data-lucide="camera" class="w-6 h-6"></i>
+                    </div>
+                </div>
+                <h3 class="text-2xl font-bold group-hover:text-orange-400 transition-colors">Détecteur d'Émotions IA</h3>
+                <p class="mt-3 text-muted-foreground text-sm leading-relaxed">
+                    Modèle d'intelligence artificielle entraîné pour analyser en temps réel les expressions faciales via la webcam et détecter l'état émotionnel (heureux, triste, fâché, dégouté, etc.).
+                </p>
+            </div>
+
+            <!-- MedLingo -->
+            <div class="interactive-card group rounded-3xl border border-white/10 bg-card/60 p-8 backdrop-blur-xl hover:border-primary/50 hover:-translate-y-2 hover:shadow-2xl hover:shadow-primary/20 transition-all duration-300">
+                <div class="flex items-center justify-between mb-6">
+                    <span class="text-xs font-mono px-3 py-1 rounded-full bg-primary/10 text-primary border border-primary/20">HTML/CSS/JS + API Groq</span>
+                    <div class="icon-box w-12 h-12 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center text-primary">
+                        <i data-lucide="bot" class="w-6 h-6"></i>
+                    </div>
+                </div>
+                <h3 class="text-2xl font-bold group-hover:text-orange-400 transition-colors">MedLingo Prototype</h3>
+                <p class="mt-3 text-muted-foreground text-sm leading-relaxed">
+                    Prototype d'assistant pour professionnels de la santé intégrant la reconnaissance vocale en temps réel (Speech Recognition) et l'analyse sémantique via l'IA Groq (modèle Llama) avec une interface moderne sur-mesure.
+                </p>
+            </div>
+
+            <!-- BOTtleNeck -->
+            <div class="interactive-card group rounded-3xl border border-white/10 bg-card/60 p-8 backdrop-blur-xl hover:border-primary/50 hover:-translate-y-2 hover:shadow-2xl hover:shadow-primary/20 transition-all duration-300">
+                <div class="flex items-center justify-between mb-6">
+                    <span class="text-xs font-mono px-3 py-1 rounded-full bg-primary/10 text-primary border border-primary/20">Python / MongoDB</span>
+                    <div class="icon-box w-12 h-12 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center text-primary">
+                        <i data-lucide="cpu" class="w-6 h-6"></i>
+                    </div>
+                </div>
+                <h3 class="text-2xl font-bold group-hover:text-orange-400 transition-colors">BOTtleNeck</h3>
+                <p class="mt-3 text-muted-foreground text-sm leading-relaxed">
+                    Bot de comparaison de composants matériels (CPU/GPU) propulsé par Python, utilisant une base de données MongoDB Atlas, des algorithmes de recherche floue et hébergé sur Discloud.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Domaines d'intérêt & Sciences -->
+    <section id="science" class="py-20 max-w-6xl mx-auto px-6 border-t border-white/10">
+        <div class="grid md:grid-cols-2 gap-12 items-center">
+            <div class="reveal">
+                <span class="text-xs font-bold uppercase tracking-[0.3em] text-primary">Vision & Ambitions</span>
+                <h2 class="text-3xl md:text-4xl font-extrabold mt-3">Médecine, technologie et sciences de la nature</h2>
+                <p class="text-muted-foreground mt-4 leading-relaxed">
+                    Préparation de l'entrée au Cégep de Bois-de-Boulogne en Sciences de la nature, avec une forte passion pour l'intersection entre l'informatique et les technologies médicales de pointe (chirurgie cardiaque et ophtalmologie).
+                </p>
+            </div>
+            <div class="reveal delay-100 flex justify-center">
+                <img src="image_13a498.jpg" alt="Aperçu des projets et de la télémétrie" class="animate-float rounded-3xl border border-white/10 shadow-2xl shadow-primary/10 max-w-full h-auto object-cover">
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer & Contact -->
+    <footer id="contact" class="py-20 border-t border-white/10 max-w-6xl mx-auto px-6 text-center reveal">
+        <span class="text-xs font-bold uppercase tracking-[0.3em] text-primary">Restons en contact</span>
+        <h2 class="text-3xl font-extrabold mt-3 mb-6">Discutons de votre prochain projet web</h2>
+        <p class="text-muted-foreground mb-8 max-w-xl mx-auto">
+            Disponible en freelance pour la création de sites internet sur-mesure. Contactez-moi directement via les canaux ci-dessous :
+        </p>
+
+        <!-- Boutons de Contact avec VRAIS LOGOS SVG (Outlook, Discord, Instagram) -->
+        <div class="flex flex-wrap justify-center gap-4 text-sm font-medium">
+            <!-- Outlook / Email -->
+            <button onclick="copyToClipboard('touhmour@csdmedu.ca', 'Adresse Email (touhmour@csdmedu.ca) copiée !')" class="contact-btn px-6 py-3.5 rounded-2xl border border-white/10 bg-card/80 backdrop-blur-xl flex items-center gap-3 group cursor-pointer">
+                <svg class="w-5 h-5 shrink-0 transition-transform group-hover:scale-110" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M1.5 17.5L9.5 21V3L1.5 6.5V17.5Z" fill="#0A2040"/>
+                    <path d="M9.5 3L22.5 5.5V18.5L9.5 21V3Z" fill="#0078D4"/>
+                    <path d="M14.5 7.5H19.5V9H14.5V7.5ZM14.5 11H19.5V12.5H14.5V11ZM14.5 14.5H19.5V16H14.5V14.5Z" fill="white"/>
+                    <path d="M3.5 9.5C3.5 8.12 4.62 7 6 7C7.38 7 8.5 8.12 8.5 9.5C8.5 10.88 7.38 12 6 12C4.62 12 3.5 10.88 3.5 9.5Z" fill="#0078D4"/>
+                </svg>
+                <span>touhmour@csdmedu.ca</span>
+            </button>
+
+            <!-- Discord -->
+            <button onclick="copyToClipboard('.rtdev', 'Pseudo Discord (.rtdev) copié !')" class="contact-btn px-6 py-3.5 rounded-2xl border border-white/10 bg-card/80 backdrop-blur-xl flex items-center gap-3 group cursor-pointer">
+                <svg class="w-5 h-5 shrink-0 fill-[#5865F2] transition-transform group-hover:scale-110" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994.021-.041.001-.09-.041-.106a13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.061 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.893.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.028zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/>
+                </svg>
+                <span>Discord : <span class="text-orange-500 font-mono">.rtdev</span></span>
+            </button>
+
+            <!-- Instagram -->
+            <a href="https://instagram.com/r1t0.a11o" target="_blank" class="contact-btn px-6 py-3.5 rounded-2xl border border-white/10 bg-card/80 backdrop-blur-xl flex items-center gap-3 group">
+                <svg class="w-5 h-5 shrink-0 fill-[#E4405F] transition-transform group-hover:scale-110" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                </svg>
+                <span>Instagram : <span class="text-orange-500">r1t0.a11o</span></span>
+            </a>
+        </div>
+
+        <p class="text-xs text-muted-foreground mt-12">© 2026 Rayan Touhmou • Conçu avec passion et rigueur.</p>
+    </footer>
+
+    <!-- Scripts JavaScript -->
+    <script>
+        // Fonction globale de copie avec notification Toast
+        let toastTimeout;
+        function copyToClipboard(text, message) {
+            navigator.clipboard.writeText(text).then(() => {
+                const toast = document.getElementById('toast');
+                const toastMessage = document.getElementById('toast-message');
+                toastMessage.textContent = message;
+
+                toast.classList.remove('opacity-0', 'pointer-events-none', 'translate-y-4');
+                toast.classList.add('opacity-100', 'translate-y-0');
+
+                clearTimeout(toastTimeout);
+                toastTimeout = setTimeout(() => {
+                    toast.classList.remove('opacity-100', 'translate-y-0');
+                    toast.classList.add('opacity-0', 'pointer-events-none', 'translate-y-4');
+                }, 3000);
+            });
+        }
+
+        document.addEventListener("DOMContentLoaded", function() {
+            // Initialisation des icônes Lucide
+            lucide.createIcons();
+
+            // 1. Menu Mobile Hamburger
+            const menuBtn = document.getElementById('menu-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const mobileLinks = document.querySelectorAll('.mobile-link');
+
+            menuBtn.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+
+            mobileLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenu.classList.add('hidden');
+                });
+            });
+
+            // 2. Intersection Observer pour les animations au scroll
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px 0px -30px 0px',
+                threshold: 0.05
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                    }
+                });
+            }, observerOptions);
+
+            const revealElements = document.querySelectorAll('.reveal');
+            revealElements.forEach(el => {
+                observer.observe(el);
+                const rect = el.getBoundingClientRect();
+                if (rect.top < window.innerHeight) {
+                    el.classList.add('active');
+                }
+            });
+
+            // 3. Curseur lumineux global suiveur
+            const cursorGlow = document.getElementById('cursor-glow');
+            let mouseX = window.innerWidth / 2;
+            let mouseY = window.innerHeight / 2;
+            let cursorX = mouseX;
+            let cursorY = mouseY;
+
+            window.addEventListener('mousemove', (e) => {
+                mouseX = e.clientX;
+                mouseY = e.clientY;
+            });
+
+            function renderCursor() {
+                cursorX += (mouseX - cursorX) * 0.8;
+                cursorY += (mouseY - cursorY) * 0.8;
+                cursorGlow.style.transform = `translate3d(${cursorX - 175}px, ${cursorY - 175}px, 0)`;
+                requestAnimationFrame(renderCursor);
+            }
+            requestAnimationFrame(renderCursor);
+
+            // 4. Effet 3D au survol des cartes
+            const cards = document.querySelectorAll('.interactive-card');
+
+            cards.forEach(card => {
+                card.addEventListener('mousemove', (e) => {
+                    const rect = card.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+
+                    card.style.setProperty('--mouse-x', `${x}px`);
+                    card.style.setProperty('--mouse-y', `${y}px`);
+
+                    const centerX = rect.width / 2;
+                    const centerY = rect.height / 2;
+                    const rotateX = ((y - centerY) / centerY) * -5;
+                    const rotateY = ((x - centerX) / centerX) * 5;
+
+                    card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-6px)`;
+                });
+
+                card.addEventListener('mouseleave', () => {
+                    card.style.transition = 'transform 0.4s cubic-bezier(0.16, 1, 0.3, 1)';
+                    card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0px)';
+                    
+                    setTimeout(() => {
+                        card.style.transition = 'none';
+                    }, 400);
+                });
+
+                card.addEventListener('mouseenter', () => {
+                    card.style.transition = 'none';
+                });
+            });
+
+            // 5. Barre de progression du scroll
+            const scrollLine = document.getElementById('scroll-line');
+            
+            window.addEventListener('scroll', () => {
+                const scrollTop = window.scrollY;
+                const docHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+                const scrollPercent = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+                scrollLine.style.height = scrollPercent + '%';
+            });
+        });
+    </script>
+</body>
+</html>
