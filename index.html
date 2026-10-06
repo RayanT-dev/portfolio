@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en" class="dark" data-theme="dark" style="color-scheme: dark;">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio • Rayan T.</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        background: '#09090b',
+                        foreground: '#fafafa',
+                        card: '#18181b',
+                        primary: {
+                            DEFAULT: '#f97316',
+                            foreground: '#ffffff',
+                        },
+                        muted: {
+                            DEFAULT: '#27272a',
+                            foreground: '#a1a1aa',
+                        }
+                    },
+                    keyframes: {
+                        fadeInUp: {
+                            '0%': { opacity: '0', transform: 'translateY(30px) scale(0.98)' },
+                            '100%': { opacity: '1', transform: 'translateY(0) scale(1)' },
+                        },
+                        pulseSlow: {
+                            '0%, 100%': { transform: 'scale(1)', opacity: '0.15' },
+                            '50%': { transform: 'scale(1.1)', opacity: '0.35' },
+                        },
+                        gridMove: {
+                            '0%': { transform: 'translateY(0px)' },
+                            '100%': { transform: 'translateY(40px)' },
+                        },
+                        floatImage: {
+                            '0%, 100%': { transform: 'translateY(0px)' },
+                            '50%': { transform: 'translateY(-15px)' },
+                        },
+                        glitchDown1: {
+                            '0%': { top: '-10%', opacity: '0' },
+                            '10%': { opacity: '0.8' },
+                            '40%': { opacity: '0.8' },
+                            '50%': { top: '110%', opacity: '0' },
+                            '100%': { top: '110%', opacity: '0' }
+                        },
+                        glitchDown2: {
+                            '0%': { top: '-10%', opacity: '0' },
+                            '35%': { top: '-10%', opacity: '0' },
+                            '45%': { opacity: '0.9' },
+                            '75%': { opacity: '0.9' },
+                            '85%': { top: '110%', opacity: '0' },
+                            '100%': { top: '110%', opacity: '0' }
+                        }
+                    },
+                    animation: {
+                        fadeInUp: 'fadeInUp 1s cubic-bezier(0.16, 1, 0.3, 1) forwards',
+                        pulseSlow: 'pulseSlow 8s ease-in-out infinite',
+                        gridMove: 'gridMove 15s linear infinite',
+                        float: 'floatImage 5s ease-in-out infinite',
+                        glitch1: 'glitchDown1 4s cubic-bezier(0.4, 0, 0.2, 1) infinite',
+                        glitch2: 'glitchDown2 4s cubic-bezier(0.4, 0, 0.2, 1) infinite',
+                    }
+                }
+            }
+        }
+    </script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="min-h-screen bg-background text-foreground overflow-x-hidden selection:bg-primary/35 selection:text-primary relative">
+
+    <div id="toast" class="fixed bottom-6 right-6 z-50 flex items-center gap-3 rounded-2xl border border-primary/40 bg-card/95 px-5 py-3.5 text-sm font-medium text-foreground shadow-2xl shadow-primary/20 backdrop-blur-xl opacity-0 pointer-events-none translate-y-4">
+        <div class="w-2.5 h-2.5 rounded-full bg-primary animate-ping"></div>
+        <span id="toast-message">Copied to clipboard!</span>
+    </div>
+
+    <div id="cursor-glow"></div>
+
+    <div aria-hidden="true" class="fixed right-8 top-0 bottom-0 z-40 hidden md:flex items-center justify-center pointer-events-none">
+        <div class="absolute w-[2px] h-full bg-white/5 rounded-full"></div>
+        <div id="scroll-line" class="absolute top-0 w-[2px] bg-gradient-to-b from-primary/50 via-primary to-orange-400 rounded-full shadow-[0_0_12px_rgba(249,115,22,0.8)]" style="height: 0%;">
+            <div class="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 w-3 h-3 bg-primary rounded-full shadow-[0_0_15px_#f97316] ring-4 ring-primary/20"></div>
+        </div>
+    </div>
+
+    <div aria-hidden="true" class="pointer-events-none fixed inset-0 -z-10 overflow-hidden">
+        <div class="absolute inset-0 bg-grid-pattern opacity-70 animate-gridMove"></div>
+        <div class="absolute -left-[10%] top-[-10%] h-[50vh] w-[50vh] rounded-full bg-primary/15 blur-[120px] animate-pulseSlow"></div>
+        <div class="absolute -right-[10%] bottom-[10%] h-[50vh] w-[50vh] rounded-full bg-orange-600/10 blur-[150px] animate-pulseSlow" style="animation-delay: 4s;"></div>
+    </div>
+
+    <header class="fixed inset-x-0 top-0 z-50 backdrop-blur-xl bg-background/80 border-b border-white/10 transition-all">
+        <div class="max-w-6xl mx-auto flex items-center justify-between px-6 py-4">
+            <a href="#" class="font-bold text-lg tracking-tight flex items-center gap-2 group">
+                <span class="h-3 w-3 rounded-full bg-primary animate-pulse group-hover:scale-125 transition-transform"></span>
+                <span>Rayan<span class="text-orange-500">.portfolio</span></span>
+            </a>
+
+            <nav class="hidden md:flex items-center gap-6 text-sm font-medium text-muted-foreground">
+                <a href="#about" class="hover:text-primary transition-colors">About</a>
+                <a href="#skills" class="hover:text-primary transition-colors">Skills</a>
+                <a href="#projects" class="hover:text-primary transition-colors">Projects</a>
+                <a href="#tools" class="hover:text-primary transition-colors">Tools & Bots</a>
+                <a href="#science" class="hover:text-primary transition-colors">Science & Tech</a>
+                <a href="#contact" class="hover:text-primary transition-colors">Contact</a>
+            </nav>
+
+            <button id="menu-btn" aria-label="Mobile Menu" class="md:hidden p-2 rounded-xl border border-white/10 bg-card text-muted-foreground hover:text-primary transition-colors">
+                <i data-lucide="menu" class="w-6 h-6"></i>
+            </button>
+        </div>
+
+        <div id="mobile-menu" class="hidden md:hidden border-b border-white/10 bg-background/95 backdrop-blur-2xl px-6 py-4 flex flex-col gap-4 text-sm font-medium text-muted-foreground">
+            <a href="#about" class="mobile-link hover:text-primary transition-colors">About</a>
+            <a href="#skills" class="mobile-link hover:text-primary transition-colors">Skills</a>
+            <a href="#projects" class="mobile-link hover:text-primary transition-colors">Projects</a>
+            <a href="#tools" class="mobile-link hover:text-primary transition-colors">Tools & Bots</a>
+            <a href="#science" class="mobile-link hover:text-primary transition-colors">Science & Tech</a>
+            <a href="#contact" class="mobile-link hover:text-primary transition-colors">Contact</a>
+        </div>
+    </header>
+
+    <section id="about" class="relative pt-36 pb-24 md:pt-48 md:pb-32 px-6 max-w-6xl mx-auto animate-fadeInUp">
+        <div class="grid md:grid-cols-2 gap-12 items-center">
+            <div>
+                <div class="inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/10 px-3.5 py-1.5 text-xs font-bold uppercase tracking-widest text-primary mb-6 backdrop-blur-xl shadow-lg shadow-primary/10">
+                    Freelance Developer • Custom Web Development
+                </div>
+                <h1 class="text-4xl md:text-6xl font-extrabold tracking-tight leading-[1.05]">
+                    Crafting <span class="text-orange-500">tailor-made web solutions</span> with precision & performance.
+                </h1>
+                <p class="mt-6 text-lg text-muted-foreground leading-relaxed">
+                    Freelance developer passionate about web design, cybersecurity, 3D modeling, and artificial intelligence, preparing for Health Sciences studies.
+                </p>
+                <div class="mt-10 flex flex-wrap gap-4">
+                    <a href="#projects" class="inline-flex items-center justify-center rounded-xl bg-primary text-primary-foreground px-6 py-3 text-sm font-medium shadow-lg shadow-primary/25 hover:scale-105 hover:bg-orange-600 active:scale-95 transition-all">
+                        View Projects
+                    </a>
+                    <a href="#contact" class="inline-flex items-center justify-center rounded-xl border border-white/10 bg-card px-6 py-3 text-sm font-medium hover:bg-muted hover:border-white/20 active:scale-95 transition-all">
+                        Get In Touch
+                    </a>
+                </div>
+            </div>
+
+            <div class="flex justify-center">
+                <div class="relative animate-float rounded-3xl overflow-hidden border border-white/10 shadow-2xl shadow-primary/10 max-w-full">
+                    <img src="img/img1.jpg" alt="Skills and Areas Overview" class="block w-full h-auto object-cover">
+                    <div class="absolute left-0 right-0 h-4 bg-gradient-to-r from-transparent via-orange-500/60 to-transparent pointer-events-none animate-glitch1 backdrop-blur-[2px] mix-blend-screen"></div>
+                    <div class="absolute left-0 right-0 h-3 bg-gradient-to-r from-transparent via-white/50 to-transparent pointer-events-none animate-glitch2 backdrop-blur-[2px] mix-blend-screen"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="skills" class="py-20 max-w-6xl mx-auto px-6 border-t border-white/10">
+        <div class="text-center max-w-2xl mx-auto mb-16 reveal">
+            <span class="text-xs font-bold uppercase tracking-[0.3em] text-primary">Technical Expertise</span>
+            <h2 class="text-3xl md:text-5xl font-extrabold mt-3">Skills & Domains</h2>
+            <p class="text-muted-foreground mt-3">A comprehensive overview of my core tech stack, frameworks, and tools.</p>
+        </div>
+
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+            <div class="interactive-card group p-6 rounded-3xl border border-white/10 bg-card/50 backdrop-blur-xl hover:border-primary/50">
+                <div class="icon-box w-12 h-12 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center text-primary mb-4">
+                    <i data-lucide="layout" class="w-6 h-6"></i>
+                </div>
+                <div class="text-primary font-bold text-lg mb-2">Frontend Web</div>
+                <p class="text-xs text-muted-foreground leading-relaxed">HTML, CSS, XHTML, JavaScript, React</p>
+            </div>
+            <div class="interactive-card group p-6 rounded-3xl border border-white/10 bg-card/50 backdrop-blur-xl hover:border-primary/50">
+                <div class="icon-box w-12 h-12 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center text-primary mb-4">
+                    <i data-lucide="server" class="w-6 h-6"></i>
+                </div>
+                <div class="text-primary font-bold text-lg mb-2">Backend & Software</div>
+                <p class="text-xs text-muted-foreground leading-relaxed">PHP, C#, Python, Firebase</p>
+            </div>
+            <div class="interactive-card group p-6 rounded-3xl border border-white/10 bg-card/50 backdrop-blur-xl hover:border-primary/50">
+                <div class="icon-box w-12 h-12 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center text-primary mb-4">
+                    <i data-lucide="box" class="w-6 h-6"></i>
+                </div>
+                <div class="text-primary font-bold text-lg mb-2">3D & Design</div>
+                <p class="text-xs text-muted-foreground leading-relaxed">3D Modeling with Blender</p>
+            </div>
+            <div class="interactive-card group p-6 rounded-3xl border border-white/10 bg-card/50 backdrop-blur-xl hover:border-primary/50">
+                <div class="icon-box w-12 h-12 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center text-primary mb-4">
+                    <i data-lucide="shield-check" class="w-6 h-6"></i>
+                </div>
+                <div class="text-primary font-bold text-lg mb-2">Security & Systems</div>
+                <p class="text-xs text-muted-foreground leading-relaxed">Cybersecurity, Discord Bots & Automation</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects" class="py-20 max-w-6xl mx-auto px-6 border-t border-white/10">
+        <div class="text-center max-w-2xl mx-auto mb-16 reveal">
+            <span class="text-xs font-bold uppercase tracking-[0.3em] text-primary">Portfolio</span>
+            <h2 class="text-3xl md:text-5xl font-extrabold mt-3">Featured Web Projects</h2>
+            <p class="text-muted-foreground mt-3">Explore custom web applications, responsive platforms, and client solutions.</p>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-6">
+            <div class="interactive-card group rounded-3xl border border-white/10 bg-card/60 p-6 backdrop-blur-xl hover:border-primary/50 hover:-translate-y-2 hover:shadow-2xl hover:shadow-primary/20 transition-all duration-300 flex flex-col justify-between">
+                <div>
+                    <div class="flex items-center justify-between mb-4">
+                        <span class="text-xs font-mono px-3 py-1 rounded-full bg-primary/10 text-primary border border-primary/20">Design & SEO</span>
+                        <div class="icon-box w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-primary">
+                            <i data-lucide="globe" class="w-5 h-5"></i>
+                        </div>
+                    </div>
+                    <h3 class="text-xl font-bold mt-4 group-hover:text-orange-400 transition-colors">WebLion Platform / Corporate Site</h3>
+                    <p class="mt-2 text-muted-foreground text-sm leading-relaxed">
+                        High-performance business showcase site built for conversion, search engine optimization (SEO), and smooth mobile user experience.
+                    </p>
+                </div>
+                <div class="mt-6">
+                    <a href="https://weblioncommunauty.github.io/site/" target="_blank" class="inline-flex items-center gap-2 text-xs font-bold text-orange-500 hover:text-orange-400 transition-colors">
+                        Visit Site →
+                    </a>
+                </div>
+            </div>
+
+            <div class="interactive-card group rounded-3xl border border-white/10 bg-card/60 p-6 backdrop-blur-xl hover:border-primary/50 hover:-translate-y-2 hover:shadow-2xl hover:shadow-primary/20 transition-all duration-300 flex flex-col justify-between">
+                <div>
+                    <div class="flex items-center justify-between mb-4">
+                        <span class="text-xs font-mono px-3 py-1 rounded-full bg-primary/10 text-primary border border-primary/20">SaaS / Web App</span>
+                        <div class="icon-box w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-primary">
+                            <i data-lucide="layout-template" class="w-5 h-5"></i>
+                        </div>
+                    </div>
+                    <h3 class="text-xl font-bold mt-4 group-hover:text-orange-400 transition-colors">Nefraim - Interactive Dashboard</h3>
+                    <p class="mt-2 text-muted-foreground text-sm leading-relaxed">
+                        Dynamic admin interface and web application designed for real-time data visualization and user management.
+                    </p>
+                </div>
+                <div class="mt-6">
+                    <a href="https://rayant-dev.github.io/nefraim/" target="_blank" class="inline-flex items-center gap-2 text-xs font-bold text-orange-500 hover:text-orange-400 transition-colors">
+                        Visit Site →
+                    </a>
+                </div>
+            </div>
+
+            <div class="interactive-card group rounded-3xl border border-white/10 bg-card/60 p-6 backdrop-blur-xl hover:border-primary/50 hover:-translate-y-2 hover:shadow-2xl hover:shadow-primary/20 transition-all duration-300 flex flex-col justify-between">
+                <div>
+                    <div class="flex items-center justify-between mb-4">
+                        <span class="text-xs font-mono px-3 py-1 rounded-full bg-primary/10 text-primary border border-primary/20">Tooling / Algorithm</span>
+                        <div class="icon-box w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-primary">
+                            <i data-lucide="file-search" class="w-5 h-5"></i>
+                        </div>
+                    </div>
+                    <h3 class="text-xl font-bold mt-4 group-hover:text-orange-400 transition-colors">Plagiarism Check / Content Analyzer</h3>
+                    <p class="mt-2 text-muted-foreground text-sm leading-relaxed">
+                        Semantic analysis and duplicate content detection tool featuring side-by-side text comparison and live reporting.
+                    </p>
+                </div>
+                <div class="mt-6">
+                    <a href="https://rayant-dev.github.io/PlagiarismCheck/" target="_blank" class="inline-flex items-center gap-2 text-xs font-bold text-orange-500 hover:text-orange-400 transition-colors">
+                        Launch Tool →
+                    </a>
+                </div>
+            </div>
+
+            <div class="interactive-card group rounded-3xl border border-white/10 bg-card/60 p-6 backdrop-blur-xl hover:border-primary/50 hover:-translate-y-2 hover:shadow-2xl hover:shadow-primary/20 transition-all duration-300 flex flex-col justify-between">
+                <div>
+                    <div class="flex items-center justify-between mb-4">
+                        <span class="text-xs font-mono px-3 py-1 rounded-full bg-primary/10 text-primary border border-primary/20">Track Record</span>
+                        <div class="icon-box w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-primary">
+                            <i data-lucide="check-circle-2" class="w-5 h-5"></i>
+                        </div>
+                    </div>
+                    <h3 class="text-xl font-bold mt-4 group-hover:text-orange-400 transition-colors">10+ Successful Projects Delivered</h3>
+                    <p class="mt-2 text-muted-foreground text-sm leading-relaxed">
+                        From custom web platforms to specialized tools, delivering high-quality, responsive, and scalable web solutions with a focus on client satisfaction.
+                    </p>
+                </div>
+                <div class="mt-6">
+                    <a href="#contact" class="inline-flex items-center gap-2 text-xs font-bold text-orange-500 hover:text-orange-400 transition-colors">
+                        Start Your Project →
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="tools" class="py-20 max-w-6xl mx-auto px-6 border-t border-white/10">
+        <div class="text-center max-w-2xl mx-auto mb-16 reveal">
+            <span class="text-xs font-bold uppercase tracking-[0.3em] text-primary">Intelligence & Bots</span>
+            <h2 class="text-3xl md:text-5xl font-extrabold mt-3">Advanced AI & Tools</h2>
+            <p class="text-muted-foreground mt-3">AI API integration, machine learning prototypes, and automation bots.</p>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-6">
+            <div class="interactive-card group rounded-3xl border border-white/10 bg-card/60 p-8 backdrop-blur-xl hover:border-primary/50 hover:-translate-y-2 hover:shadow-2xl hover:shadow-primary/20 transition-all duration-300">
+                <div class="flex items-center justify-between mb-6">
+                    <span class="text-xs font-mono px-3 py-1 rounded-full bg-primary/10 text-primary border border-primary/20">Machine Learning / Vision</span>
+                    <div class="icon-box w-12 h-12 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center text-primary">
+                        <i data-lucide="camera" class="w-6 h-6"></i>
+                    </div>
+                </div>
+                <h3 class="text-2xl font-bold group-hover:text-orange-400 transition-colors">AI Emotion Detector</h3>
+                <p class="mt-3 text-muted-foreground text-sm leading-relaxed">
+                    AI model trained to analyze real-time facial expressions via webcam to detect emotional states (happy, sad, angry, surprised, etc.).
+                </p>
+            </div>
+
+            <div class="interactive-card group rounded-3xl border border-white/10 bg-card/60 p-8 backdrop-blur-xl hover:border-primary/50 hover:-translate-y-2 hover:shadow-2xl hover:shadow-primary/20 transition-all duration-300">
+                <div class="flex items-center justify-between mb-6">
+                    <span class="text-xs font-mono px-3 py-1 rounded-full bg-primary/10 text-primary border border-primary/20">JS + Groq AI API</span>
+                    <div class="icon-box w-12 h-12 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center text-primary">
+                        <i data-lucide="bot" class="w-6 h-6"></i>
+                    </div>
+                </div>
+                <h3 class="text-2xl font-bold group-hover:text-orange-400 transition-colors">MedLingo Prototype</h3>
+                <p class="mt-3 text-muted-foreground text-sm leading-relaxed">
+                    Healthcare assistant prototype combining real-time speech recognition with Groq AI (Llama model) processing and a custom modern interface.
+                </p>
+            </div>
+
+            <div class="interactive-card group rounded-3xl border border-white/10 bg-card/60 p-8 backdrop-blur-xl hover:border-primary/50 hover:-translate-y-2 hover:shadow-2xl hover:shadow-primary/20 transition-all duration-300">
+                <div class="flex items-center justify-between mb-6">
+                    <span class="text-xs font-mono px-3 py-1 rounded-full bg-primary/10 text-primary border border-primary/20">Python / MongoDB</span>
+                    <div class="icon-box w-12 h-12 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center text-primary">
+                        <i data-lucide="cpu" class="w-6 h-6"></i>
+                    </div>
+                </div>
+                <h3 class="text-2xl font-bold group-hover:text-orange-400 transition-colors">BOTtleNeck</h3>
+                <p class="mt-3 text-muted-foreground text-sm leading-relaxed">
+                    Hardware comparison bot (CPU/GPU) powered by Python, utilizing MongoDB Atlas, fuzzy search algorithms, and hosted on Discloud.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section id="science" class="py-20 max-w-6xl mx-auto px-6 border-t border-white/10">
+        <div class="grid md:grid-cols-2 gap-12 items-center">
+            <div class="reveal">
+                <span class="text-xs font-bold uppercase tracking-[0.3em] text-primary">Vision & Aspirations</span>
+                <h2 class="text-3xl md:text-4xl font-extrabold mt-3">Medicine, Technology & Science</h2>
+                <p class="text-muted-foreground mt-4 leading-relaxed">
+                    Preparing for Health Science, with a deep interest in bridging computer science and advanced medical technologies (cardiac surgery and ophthalmology).
+                </p>
+            </div>
+            <div class="reveal delay-100 flex justify-center">
+                <img src="img/img2.jpg" alt="Projects and Telemetry Overview" class="animate-float rounded-3xl border border-white/10 shadow-2xl shadow-primary/10 max-w-full h-auto object-cover">
+            </div>
+        </div>
+    </section>
+
+    <footer id="contact" class="py-20 border-t border-white/10 max-w-6xl mx-auto px-6 text-center reveal">
+        <span class="text-xs font-bold uppercase tracking-[0.3em] text-primary">Get In Touch</span>
+        <h2 class="text-3xl font-extrabold mt-3 mb-6">Let's build your next web project</h2>
+        <p class="text-muted-foreground mb-8 max-w-xl mx-auto">
+            Available for freelance custom web development. Reach out directly through any of the channels below:
+        </p>
+
+        <div class="flex flex-wrap justify-center gap-4 text-sm font-medium">
+            <button onclick="copyToClipboard('touhmou.1.rayan@gmail.com', 'Email address (touhmou.1.rayan@gmail.com) copied!')" class="contact-btn px-6 py-3.5 rounded-2xl border border-white/10 bg-card/80 backdrop-blur-xl flex items-center gap-3 group cursor-pointer">
+                <svg class="w-5 h-5 shrink-0 transition-transform group-hover:scale-110" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M1.5 17.5L9.5 21V3L1.5 6.5V17.5Z" fill="#0A2040"/>
+                    <path d="M9.5 3L22.5 5.5V18.5L9.5 21V3Z" fill="#0078D4"/>
+                    <path d="M14.5 7.5H19.5V9H14.5V7.5ZM14.5 11H19.5V12.5H14.5V11ZM14.5 14.5H19.5V16H14.5V14.5Z" fill="white"/>
+                    <path d="M3.5 9.5C3.5 8.12 4.62 7 6 7C7.38 7 8.5 8.12 8.5 9.5C8.5 10.88 7.38 12 6 12C4.62 12 3.5 10.88 3.5 9.5Z" fill="#0078D4"/>
+                </svg>
+                <span>touhmou.1.rayan@gmail.com</span>
+            </button>
+
+            <button onclick="copyToClipboard('.rtdev', 'Discord tag (.rtdev) copied!')" class="contact-btn px-6 py-3.5 rounded-2xl border border-white/10 bg-card/80 backdrop-blur-xl flex items-center gap-3 group cursor-pointer">
+                <svg class="w-5 h-5 shrink-0 fill-[#5865F2] transition-transform group-hover:scale-110" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994.021-.041.001-.09-.041-.106a13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.061 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.893.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.028zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/>
+                </svg>
+                <span>Discord: <span class="text-orange-500 font-mono">.rtdev</span></span>
+            </button>
+
+            <a href="https://instagram.com/r1t0.a11o" target="_blank" class="contact-btn px-6 py-3.5 rounded-2xl border border-white/10 bg-card/80 backdrop-blur-xl flex items-center gap-3 group">
+                <svg class="w-5 h-5 shrink-0 fill-[#E4405F] transition-transform group-hover:scale-110" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                </svg>
+                <span>Instagram: <span class="text-orange-500">r1t0.a11o</span></span>
+            </a>
+        </div>
+
+        <p class="text-xs text-muted-foreground mt-12">© 2026 Rayan T. • Built with passion and precision.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
