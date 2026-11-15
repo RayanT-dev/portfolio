@@ -856,6 +856,108 @@
     border-bottom: 2px solid var(--accent);
   }
 
+  /* Carrousel des réalisations : une diapositive visible à la fois, flèches + onglets */
+  .car {
+    margin-top: 56px;
+  }
+  .slides {
+    display: grid;
+    overflow: hidden;
+    padding: 4px 0 40px;
+    margin-bottom: -40px;
+  }
+  .slide {
+    grid-area: 1/1;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity .35s,transform .6s cubic-bezier(.2,.8,.2,1),visibility 0s .6s;
+  }
+  .slide.before {
+    transform: translateX(-56px);
+  }
+  .slide.after {
+    transform: translateX(56px);
+  }
+  .slide.on {
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+    transition: opacity .5s .1s,transform .6s cubic-bezier(.2,.8,.2,1),visibility 0s;
+  }
+  .ctl {
+    margin-top: 8px;
+    padding-top: 24px;
+    border-top: 1px solid var(--line);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+  .tabs {
+    display: flex;
+    gap: 28px;
+    flex-wrap: wrap;
+  }
+  .tabs button {
+    appearance: none;
+    background: none;
+    border: 0;
+    border-bottom: 3px solid transparent;
+    padding: 6px 0;
+    cursor: pointer;
+    color: var(--muted);
+    font: 700 1.15rem var(--head);
+    letter-spacing: -.02em;
+    transition: color .2s,border-color .2s;
+  }
+  .tabs button:hover {
+    color: var(--ink);
+  }
+  .tabs button[aria-selected="true"] {
+    color: var(--ink);
+    border-color: var(--accent);
+  }
+  .arrows {
+    display: flex;
+    gap: 10px;
+  }
+  .arrows button {
+    appearance: none;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    border: 2px solid var(--ink);
+    background: transparent;
+    color: var(--ink);
+    display: grid;
+    place-items: center;
+    cursor: pointer;
+    transition: background .2s,color .2s,transform .2s;
+  }
+  .arrows button:hover {
+    background: var(--ink);
+    color: var(--bg);
+  }
+  .arrows button:active {
+    transform: scale(.94);
+  }
+  .arrows svg {
+    width: 22px;
+    height: 22px;
+  }
+  .site.rd .long .a {
+    background: linear-gradient(160deg,#3a2c1d,#17110b);
+    color: #f1e4c6;
+  }
+  .site.rd .long .b {
+    background: #f4ecda;
+  }
+  .site.rd .long .c {
+    background: #b98b3e;
+    color: #1d140a;
+  }
+
   /* Section « à propos » : carte de profil + gabarits fantômes derrière + texte */
   .about {
     background: var(--surface);
@@ -1442,7 +1544,7 @@
 <!-- Navigation -->
 <nav id="nav"><div class="wrap">
   <a class="logo" href="#haut">RT<b>.</b>dev</a>
-  <ul><li><a href="#services">Services</a></li><li><a href="#competences">Compétences</a></li><li><a href="#methode">Méthode</a></li><li><a href="#projet">Réalisation</a></li><li><a href="#apropos">À propos</a></li></ul>
+  <ul><li><a href="#services">Services</a></li><li><a href="#competences">Compétences</a></li><li><a href="#methode">Méthode</a></li><li><a href="#projet">Réalisations</a></li><li><a href="#apropos">À propos</a></li></ul>
   <a class="btn btn-main" href="#contact" data-mag>Démarrer</a>
 </div></nav>
 
@@ -1454,7 +1556,7 @@
       <div class="tag"><i></i>Disponible pour de nouveaux projets</div>
       <h1><span class="w" style="--i:0"><span style="--i:0">Je</span></span> <span class="w"><span style="--i:1">crée</span></span> <span class="w"><span style="--i:2">des</span></span> <span class="w"><span style="--i:3">sites</span></span> <span class="w g"><span style="--i:4">qui</span></span> <span class="w g"><span style="--i:5">font</span></span> <span class="w g"><span style="--i:6">de</span></span> <span class="w g"><span style="--i:7">l’effet.</span></span></h1>
       <p class="lede">Développeur web indépendant au Québec. Je conçois et programme moi-même votre image et votre site, de l’idée à la mise en ligne.</p>
-      <div class="acts"><a class="btn btn-main" href="#contact" data-mag>Démarrer un projet</a><a class="btn btn-ghost" href="#projet" data-mag>Voir une réalisation</a></div>
+      <div class="acts"><a class="btn btn-main" href="#contact" data-mag>Démarrer un projet</a><a class="btn btn-ghost" href="#projet" data-mag>Voir mes réalisations</a></div>
     </div>
     <div class="term" aria-hidden="true">
       <div class="th"><span></span><span></span><span></span><em>index.html</em></div>
@@ -1512,18 +1614,55 @@
   </div>
 </div></section>
 
-<!-- Projet présenté avec aperçu en direct -->
-<section class="case" id="projet"><div class="wrap grid">
-  <div>
-    <h2 class="rv">Un exemple de mon travail.</h2>
-    <ul class="rv"><li><b><a href="https://weblioncommunauty.github.io/site/" target="_blank" rel="noopener">WebLion</a></b><span>Un site d’entreprise pensé pour la conversion et l’expérience sur mobile.</span></li><li><b>Ce que j’ai fait</b><span>Le design, la programmation et la mise en ligne, du début à la fin.</span></li><li><b>À vous de jouer</b><span>Parcourez le site directement dans la fenêtre à côté.</span></li></ul>
-    <a class="btn" href="#contact" data-mag>Obtenir le même résultat</a>
-  </div>
-  <div class="site rv" id="site" role="img" aria-label="Aperçu d’un site réalisé qui défile">
-    <div class="bar2"><span></span><span></span><span></span><b>weblioncommunauty.github.io/site</b></div>
-    <div class="long"><div class="a"><h4>WebLion</h4><p>Un site d’entreprise clair et rapide.</p></div><div class="b"><h4>Une histoire claire</h4><p>Des sections pensées pour guider.</p></div><div class="c"><h4>Un appel à l’action</h4><p>Un chemin simple vers le contact.</p></div></div>
-    <iframe id="live" src="https://weblioncommunauty.github.io/site/" title="Aperçu en direct du site WebLion" loading="lazy" referrerpolicy="no-referrer"></iframe>
-    <a class="hint" href="https://weblioncommunauty.github.io/site/" target="_blank" rel="noopener">Ouvrir en plein écran ↗</a>
+<!-- Réalisations : carrousel avec aperçus en direct -->
+<section class="case" id="projet"><div class="wrap">
+  <h2 class="rv">Deux exemples de mon travail.</h2>
+  <div class="car rv" id="car" role="region" aria-roledescription="carrousel" aria-label="Mes réalisations">
+    <div class="slides">
+
+      <!-- Réalisation 1 : WebLion -->
+      <article class="slide on" role="group" aria-roledescription="diapositive" aria-label="1 sur 2 : WebLion">
+        <div class="grid">
+          <div>
+            <ul><li><b><a href="https://weblioncommunauty.github.io/site/" target="_blank" rel="noopener">WebLion</a></b><span>Un site d’entreprise pensé pour la conversion et l’expérience sur mobile.</span></li><li><b>Ce que j’ai fait</b><span>Le design, la programmation et la mise en ligne, du début à la fin.</span></li><li><b>À vous de jouer</b><span>Parcourez le site directement dans la fenêtre à côté.</span></li></ul>
+            <a class="btn" href="#contact" data-mag>Obtenir le même résultat</a>
+          </div>
+          <div class="site" role="group" aria-label="Aperçu du site WebLion">
+            <div class="bar2"><span></span><span></span><span></span><b>weblioncommunauty.github.io/site</b></div>
+            <div class="long" aria-hidden="true"><div class="a"><h4>WebLion</h4><p>Un site d’entreprise clair et rapide.</p></div><div class="b"><h4>Une histoire claire</h4><p>Des sections pensées pour guider.</p></div><div class="c"><h4>Un appel à l’action</h4><p>Un chemin simple vers le contact.</p></div></div>
+            <iframe src="https://weblioncommunauty.github.io/site/" title="Aperçu en direct du site WebLion" loading="lazy" referrerpolicy="no-referrer"></iframe>
+            <a class="hint" href="https://weblioncommunauty.github.io/site/" target="_blank" rel="noopener">Ouvrir en plein écran ↗</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- Réalisation 2 : Le Rasoir d’Or -->
+      <article class="slide after" role="group" aria-roledescription="diapositive" aria-label="2 sur 2 : Le Rasoir d’Or" aria-hidden="true" inert>
+        <div class="grid">
+          <div>
+            <ul><li><b><a href="https://rayant-dev.github.io/rasoirdor/" target="_blank" rel="noopener">Le Rasoir d’Or</a></b><span>Un site de barbier de quartier : tarifs lisibles, horaires et un bouton pour réserver sa chaise.</span></li><li><b>Ce que j’ai fait</b><span>Le design, les textes et la programmation, pensés pour le mobile.</span></li><li><b>Salon fictif</b><span>Une maquette qui montre ce que je ferais pour votre commerce de quartier.</span></li></ul>
+            <a class="btn" href="#contact" data-mag>Obtenir le même résultat</a>
+          </div>
+          <div class="site rd" role="group" aria-label="Aperçu du site Le Rasoir d’Or">
+            <div class="bar2"><span></span><span></span><span></span><b>rayant-dev.github.io/rasoirdor</b></div>
+            <div class="long" aria-hidden="true"><div class="a"><h4>Le Rasoir d’Or</h4><p>Barbier de quartier, rue Beaubien.</p></div><div class="b"><h4>Les tarifs, sans surprise</h4><p>Chaque service avec son prix.</p></div><div class="c"><h4>Votre chaise vous attend</h4><p>Horaires, adresse et téléphone.</p></div></div>
+            <iframe src="https://rayant-dev.github.io/rasoirdor/" title="Aperçu en direct du site Le Rasoir d’Or" loading="lazy" referrerpolicy="no-referrer"></iframe>
+            <a class="hint" href="https://rayant-dev.github.io/rasoirdor/" target="_blank" rel="noopener">Ouvrir en plein écran ↗</a>
+          </div>
+        </div>
+      </article>
+
+    </div>
+    <div class="ctl">
+      <div class="tabs" role="tablist" aria-label="Choisir une réalisation">
+        <button type="button" role="tab" aria-selected="true">WebLion</button>
+        <button type="button" role="tab" aria-selected="false">Le Rasoir d’Or</button>
+      </div>
+      <div class="arrows">
+        <button type="button" id="prevS" aria-label="Réalisation précédente"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M11 5l-7 7 7 7"/></svg></button>
+        <button type="button" id="nextS" aria-label="Réalisation suivante"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg></button>
+      </div>
+    </div>
   </div>
 </div></section>
 
@@ -1645,10 +1784,25 @@ function type(){var i=0;[].forEach.call(prev,function(p){p.classList.remove('on'
   [].forEach.call(prev,function(p,k){if(i>=[src.indexOf('</h1>')+5,src.indexOf('</p>')+4,src.length][k])p.classList.add('on')});
   if(i<src.length)setTimeout(t,45);else setTimeout(type,4200)})()}
 if(reduce){code.textContent=src;[].forEach.call(prev,function(p){p.classList.add('on')})}else setTimeout(type,1500);
-/* Sur tactile, le site de démo défile tout seul quand il est visible */
-if(!fine)new IntersectionObserver(function(es){es[0].target.classList.toggle('auto',es[0].isIntersecting)},{threshold:.6}).observe($('#site'));
-/* Aperçu en direct : on réduit l’iframe pour qu’elle tienne dans le cadre */
-var fr=$('#live'),box=$('#site');function fit(){var sc=box.clientWidth/1280;fr.style.height=((box.clientHeight-34)/sc)+'px';fr.style.transform='scale('+sc+')'}fit();addEventListener('resize',fit);
+/* Sur tactile, les sites de démo défilent tout seuls quand ils sont visibles */
+if(!fine)$$('.site').forEach(function(el){new IntersectionObserver(function(es){el.classList.toggle('auto',es[0].isIntersecting)},{threshold:.6}).observe(el)});
+/* Aperçus en direct : on réduit chaque iframe pour qu’elle tienne dans son cadre */
+function fit(){$$('.site').forEach(function(box){var fr=$('iframe',box),sc=box.clientWidth/1280;fr.style.height=((box.clientHeight-34)/sc)+'px';fr.style.transform='scale('+sc+')'})}fit();addEventListener('resize',fit);
+/* Carrousel des réalisations : flèches, onglets, clavier et balayage au doigt */
+var car=$('#car'),slides=$$('#car .slide'),tabs=$$('#car .tabs button'),cur_i=0;
+function go(n,dir){n=(n+slides.length)%slides.length;if(n===cur_i)return;
+ var out=slides[cur_i],inn=slides[n];
+ inn.style.transition='none';inn.classList.remove('before','after');inn.classList.add(dir>0?'after':'before');void inn.offsetWidth;inn.style.transition='';
+ out.classList.remove('on');out.classList.add(dir>0?'before':'after');out.setAttribute('aria-hidden','true');out.inert=true;
+ inn.classList.remove('before','after');inn.classList.add('on');inn.removeAttribute('aria-hidden');inn.inert=false;
+ tabs.forEach(function(t,k){t.setAttribute('aria-selected',k===n)});cur_i=n;fit()}
+$('#prevS').addEventListener('click',function(){go(cur_i-1,-1)});
+$('#nextS').addEventListener('click',function(){go(cur_i+1,1)});
+tabs.forEach(function(t,k){t.addEventListener('click',function(){go(k,k>cur_i?1:-1)})});
+car.addEventListener('keydown',function(e){if(e.target.closest('iframe'))return;if(e.key==='ArrowLeft'){go(cur_i-1,-1)}else if(e.key==='ArrowRight'){go(cur_i+1,1)}});
+var tx=0,ty=0;
+car.addEventListener('touchstart',function(e){tx=e.touches[0].clientX;ty=e.touches[0].clientY},{passive:true});
+car.addEventListener('touchend',function(e){var dx=e.changedTouches[0].clientX-tx,dy=e.changedTouches[0].clientY-ty;if(Math.abs(dx)>60&&Math.abs(dx)>Math.abs(dy)*1.5)go(cur_i+(dx<0?1:-1),dx<0?1:-1)},{passive:true});
 /* Formulaire : vérification, envoi via FormSubmit, sinon ouverture du courriel en secours */
 var F=$('#f'),ok=$('#ok'),sb=F.querySelector('button'),EMAIL='touhmou.1.rayan@gmail.com';
 F.addEventListener('submit',function(e){e.preventDefault();ok.className='';
