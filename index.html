@@ -962,6 +962,18 @@
     background: #b98b3e;
     color: #1d140a;
   }
+  .site.mn .long .a {
+    background: linear-gradient(160deg,#f4c842,#e8a93a);
+    color: #4a0f1a;
+  }
+  .site.mn .long .b {
+    background: #f6c4b8;
+    color: #4a0f1a;
+  }
+  .site.mn .long .c {
+    background: #4a0f1a;
+    color: #ffe9b8;
+  }
 
   /* Section « à propos » : carte de profil + gabarits fantômes derrière + texte */
   .about {
@@ -1633,12 +1645,12 @@
 
 <!-- Réalisations : carrousel avec aperçus en direct -->
 <section class="case" id="projet"><div class="wrap">
-  <h2 class="rv">Deux exemples de mon travail.</h2>
+  <h2 class="rv">Trois exemples de mon travail.</h2>
   <div class="car rv" id="car" role="region" aria-roledescription="carrousel" aria-label="Mes réalisations">
     <div class="slides">
 
       <!-- Réalisation 1 : WebLion -->
-      <article class="slide on" role="group" aria-roledescription="diapositive" aria-label="1 sur 2 : WebLion">
+      <article class="slide on" role="group" aria-roledescription="diapositive" aria-label="1 sur 3 : WebLion">
         <div class="grid">
           <div>
             <ul><li><b><a href="https://weblioncommunauty.github.io/site/" target="_blank" rel="noopener">WebLion</a></b><span>Un site d’entreprise pensé pour la conversion et l’expérience sur mobile.</span></li><li><b>Ce que j’ai fait</b><span>Le design, la programmation et la mise en ligne, du début à la fin.</span></li><li><b>À vous de jouer</b><span>Parcourez le site directement dans la fenêtre à côté.</span></li></ul>
@@ -1654,7 +1666,7 @@
       </article>
 
       <!-- Réalisation 2 : Le Rasoir d’Or -->
-      <article class="slide after" role="group" aria-roledescription="diapositive" aria-label="2 sur 2 : Le Rasoir d’Or" aria-hidden="true" inert>
+      <article class="slide after" role="group" aria-roledescription="diapositive" aria-label="2 sur 3 : Le Rasoir d’Or" aria-hidden="true" inert>
         <div class="grid">
           <div>
             <ul><li><b><a href="https://rayant-dev.github.io/rasoirdor/" target="_blank" rel="noopener">Le Rasoir d’Or</a></b><span>Un site de barbier de quartier : tarifs lisibles, horaires et un bouton pour réserver sa chaise.</span></li><li><b>Ce que j’ai fait</b><span>Le design, les textes et la programmation, pensés pour le mobile.</span></li><li><b>Salon fictif</b><span>Une maquette qui montre ce que je ferais pour votre commerce de quartier.</span></li></ul>
@@ -1669,11 +1681,28 @@
         </div>
       </article>
 
+      <!-- Réalisation 3 : Mie des Neiges -->
+      <article class="slide after" role="group" aria-roledescription="diapositive" aria-label="3 sur 3 : Mie des Neiges" aria-hidden="true" inert>
+        <div class="grid">
+          <div>
+            <ul><li><b><a href="https://rayant-dev.github.io/miedesneiges/" target="_blank" rel="noopener">Mie des Neiges</a></b><span>Un site de boulangerie à Côte-des-Neiges : fournée du jour, heures de sortie du four et animations qui lèvent comme de la pâte.</span></li><li><b>Ce que j’ai fait</b><span>Le design, les illustrations, les animations et la programmation.</span></li><li><b>Boulangerie fictive</b><span>Une maquette pour montrer ce que je ferais pour une boulangerie de quartier.</span></li></ul>
+            <a class="btn" href="#contact" data-mag>Obtenir le même résultat</a>
+          </div>
+          <div class="site mn" role="group" aria-label="Aperçu du site Mie des Neiges">
+            <div class="bar2"><span></span><span></span><span></span><b>rayant-dev.github.io/miedesneiges</b></div>
+            <div class="long" aria-hidden="true"><div class="a"><h4>Mie des Neiges</h4><p>Le pain sort du four à six heures.</p></div><div class="b"><h4>La fournée du jour</h4><p>Levain, croissants, baguettes.</p></div><div class="c"><h4>Passez nous voir</h4><p>Horaires et téléphone.</p></div></div>
+            <iframe src="https://rayant-dev.github.io/miedesneiges/" title="Aperçu en direct du site Mie des Neiges" loading="lazy" referrerpolicy="no-referrer"></iframe>
+            <a class="hint" href="https://rayant-dev.github.io/miedesneiges/" target="_blank" rel="noopener">Ouvrir en plein écran ↗</a>
+          </div>
+        </div>
+      </article>
+
     </div>
     <div class="ctl">
       <div class="tabs" role="tablist" aria-label="Choisir une réalisation">
         <button type="button" role="tab" aria-selected="true">WebLion</button>
         <button type="button" role="tab" aria-selected="false">Le Rasoir d’Or</button>
+        <button type="button" role="tab" aria-selected="false">Mie des Neiges</button>
       </div>
       <div class="arrows">
         <button type="button" id="prevS" aria-label="Réalisation précédente"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M11 5l-7 7 7 7"/></svg></button>
