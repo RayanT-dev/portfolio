@@ -78,6 +78,7 @@
     },
     {
       "@type": "ProfessionalService",
+      "telephone": "+1-438-814-3231",
       "@id": "https://rayant.me/#service",
       "name": "RT Dev",
       "url": "https://rayant.me/",
@@ -1923,7 +1924,7 @@
       <button class="btn" type="submit" data-mag>Envoyer ma demande</button>
       <p id="ok" role="status"></p>
     </form>
-    <div class="direct"><span>Je réponds personnellement à chaque message.</span><a href="mailto:contact@rayant.me">contact@rayant.me</a><a href="https://instagram.com/rayant.dev" target="_blank" rel="noopener">Instagram : rayant.dev</a></div>
+    <div class="direct"><span>Je réponds personnellement à chaque message.</span><a href="mailto:contact@rayant.me">contact@rayant.me</a><a href="sms:+14388143231">Texto : (438) 814-3231</a><a href="https://instagram.com/rayant.dev" target="_blank" rel="noopener">Instagram : rayant.dev</a></div>
   </div>
 </div></section>
 <!-- footer -->
@@ -2054,7 +2055,7 @@
     car.addEventListener('touchstart', function (e) { debutX = e.touches[0].clientX; debutY = e.touches[0].clientY; }, { passive: true });
     car.addEventListener('touchend', function (e) { var dx = e.changedTouches[0].clientX - debutX, dy = e.changedTouches[0].clientY - debutY; if (Math.abs(dx) > 60 && Math.abs(dx) > Math.abs(dy) * 1.5)
       go(indexActif + (dx < 0 ? 1 : -1), dx < 0 ? 1 : -1); }, { passive: true });
-    /* formulaire (formsubmit, sinon mailto) */
+    /* formulaire (envoi par formsubmit) */
     var formulaire = $('#f'), retour = $('#ok'), btnEnvoi = formulaire.querySelector('button'), EMAIL = 'contact@rayant.me';
     formulaire.addEventListener('submit', function (e) {
       e.preventDefault();
@@ -2087,9 +2088,8 @@
         throw 0; end(); formulaire.reset(); retour.className = 'good'; retour.textContent = 'Merci ! Votre message est envoyé. Je vous réponds personnellement très bientôt.'; })
         .catch(function () {
         end();
-        retour.className = 'good';
-        retour.textContent = 'Votre application courriel s’ouvre avec le message prêt à envoyer.';
-        location.href = 'mailto:' + EMAIL + '?subject=' + encodeURIComponent('Nouveau projet') + '&body=' + encodeURIComponent('Nom : ' + d.nom + '\nCourriel : ' + d.courriel + '\nService : ' + d.service + '\n\n' + d.msg);
+        retour.className = 'err';
+        retour.textContent = 'Votre message n’a pas pu partir. Réessayez dans un moment ou envoyez-moi un texto au (438) 814-3231.';
       });
     });
   })();
