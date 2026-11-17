@@ -5,14 +5,14 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Rayan T. (RT Dev), développeur web indépendant au Québec</title>
 
-<!-- Référencement : ce que Google affiche sous le lien -->
+<!-- seo (la description sous le lien google) -->
 <meta name="description" content="Développeur web indépendant au Québec : image de marque, sites sur mesure rapides et adaptés au mobile, de l’idée à la mise en ligne. Dès 149 $.">
 <meta name="robots" content="index, follow, max-image-preview:large">
 <meta name="author" content="Rayan T.">
-<!-- Adresse officielle de la page : à changer ici si le portfolio n'est pas à la racine du site -->
+<!-- adresse du site, à changer si ça bouge -->
 <link rel="canonical" href="https://rayant.me/">
 
-<!-- Icônes : onglet, Google, iPhone et Android -->
+<!-- icônes -->
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="icon" href="favicon-48.png" type="image/png" sizes="48x48">
 <link rel="icon" href="favicon-32.png" type="image/png" sizes="32x32">
@@ -22,7 +22,7 @@
 <meta name="theme-color" content="#f3f1ec" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#0a1b1c" media="(prefers-color-scheme: dark)">
 
-<!-- Aperçu quand on partage le lien (Facebook, Messenger, LinkedIn, Discord, iMessage) -->
+<!-- aperçu quand je partage le lien -->
 <meta property="og:type" content="website">
 <meta property="og:locale" content="fr_CA">
 <meta property="og:site_name" content="RT Dev">
@@ -38,7 +38,7 @@
 <meta name="twitter:description" content="Développeur web indépendant au Québec : image de marque, sites sur mesure rapides et adaptés au mobile, de l’idée à la mise en ligne. Dès 149 $.">
 <meta name="twitter:image" content="https://rayant.me/og-image.png">
 
-<!-- Données structurées : aide Google à comprendre qui je suis et ce que je vends -->
+<!-- json-ld pour google -->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -61,7 +61,7 @@
       "url": "https://rayant.me/",
       "image": "https://rayant.me/icon-512.png",
       "sameAs": [
-        "https://instagram.com/r1t0.a11o"
+        "https://instagram.com/rayant.dev"
       ],
       "knowsAbout": [
         "HTML",
@@ -146,9 +146,9 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,700;12..96,800&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
-  /* Feuille de style du site RT.dev (écrite à la main) */
+  /* css du site */
 
-  /* Variables globales : couleurs, polices et réglages de base du thème (clair / sombre) */
+  /* variables (couleurs, polices, thème sombre) */
   :root {
     --bg: #f3f1ec;
     --surface: #fff;
@@ -188,7 +188,7 @@
     color-scheme: dark;
   }
 
-  /* Base de la page */
+  /* base */
   html {
     scroll-behavior: smooth;
     scroll-padding-top: calc(env(safe-area-inset-top,0px) + 70px);
@@ -234,14 +234,14 @@
     border-radius: 4px;
   }
 
-  /* Conteneur centré, utilisé dans toutes les sections */
+  /* conteneur */
   .wrap {
     max-width: 1160px;
     margin: 0 auto;
     padding: 0 24px;
   }
 
-  /* Boutons */
+  /* boutons */
   .btn {
     display: inline-block;
     text-decoration: none;
@@ -263,7 +263,7 @@
     color: var(--dink);
   }
 
-  /* Barre de progression du scroll (en haut de la page) */
+  /* barre de progression en haut */
   #bar {
     position: fixed;
     left: 0;
@@ -276,7 +276,7 @@
     z-index: 70;
   }
 
-  /* Curseur personnalisé (caché sur écran tactile) */
+  /* curseur custom (pas sur tactile) */
   #cur {
     position: fixed;
     left: 0;
@@ -299,7 +299,7 @@
     opacity: .5!important;
   }
 
-  /* Barre de navigation */
+  /* nav */
   nav {
     position: fixed;
     left: 0;
@@ -346,7 +346,7 @@
     padding: 10px 20px;
   }
 
-  /* Section d’accueil (hero) */
+  /* hero */
   .hero {
     position: relative;
     min-height: 100svh;
@@ -426,7 +426,7 @@
     }
   }
 
-  /* Titre principal */
+  /* gros titre */
   h1 {
     font-size: clamp(3rem,7.2vw,6.4rem);
     font-weight: 800;
@@ -539,7 +539,7 @@
     }
   }
 
-  /* Aperçu du site qui s’affiche à côté du code qui se tape tout seul */
+  /* aperçu du site à côté du code */
   .prev {
     margin: 0 16px 16px;
     border-radius: 12px;
@@ -629,7 +629,7 @@
     }
   }
 
-  /* Sections : espacement et titres */
+  /* sections en général */
   section {
     padding: 120px 0;
   }
@@ -644,7 +644,7 @@
     max-width: 52ch;
   }
 
-  /* Animation d’apparition au scroll (la classe .in est ajoutée par le JS) */
+  /* apparition au scroll (le js ajoute .in) */
   .rv {
     opacity: 0;
     transform: translateY(50px);
@@ -697,7 +697,7 @@
     perspective: 1000px;
   }
 
-  /* Cartes de tarifs */
+  /* tarifs */
   .tier {
     position: relative;
     background: var(--surface);
@@ -826,7 +826,7 @@
     color: var(--accent);
   }
 
-  /* Section « méthode » : les étapes avec le trait de progression */
+  /* méthode (les étapes + le trait) */
   .proc {
     background: var(--deep);
     color: var(--dink);
@@ -995,7 +995,7 @@
     border-bottom: 2px solid var(--accent);
   }
 
-  /* Carrousel des réalisations : une diapositive visible à la fois, flèches + onglets */
+  /* carrousel */
   .car {
     margin-top: 56px;
   }
@@ -1114,13 +1114,13 @@
     color: #ffe9b8;
   }
 
-  /* Section « à propos » : carte de profil + gabarits fantômes derrière + texte */
+  /* à propos */
   .about {
     background: var(--surface);
     overflow: hidden;
   }
 
-  /* Deux colonnes : la carte à gauche, le texte à droite */
+  /* 2 colonnes */
   .about .grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -1138,7 +1138,7 @@
     margin-top: 24px;
   }
 
-  /* Liste des engagements sous le paragraphe */
+  /* engagements */
   .vows {
     list-style: none;
     margin: 36px 0 0;
@@ -1166,14 +1166,14 @@
     color: var(--accent);
   }
 
-  /* Pile de cartes : la vraie carte devant, les faux gabarits derrière */
+  /* pile de cartes */
   .stack {
     position: relative;
     padding: 0 0 34px;
     perspective: 1200px;
   }
 
-  /* Faux gabarits en pointillés, pour illustrer « pas une machine à gabarits » */
+  /* faux gabarits */
   .ghost {
     overflow: hidden;
     position: absolute;
@@ -1237,7 +1237,7 @@
     width: 60%;
   }
 
-  /* Carte de profil (fond sombre, légèrement inclinée) */
+  /* carte de profil */
   .pc {
     background: var(--deep);
     color: var(--dink);
@@ -1324,7 +1324,7 @@
     }
   }
 
-  /* Barres de performance : elles se remplissent quand la carte apparaît */
+  /* barres de perf */
   .perf {
     display: grid;
     gap: 11px;
@@ -1432,7 +1432,7 @@
     text-overflow: ellipsis;
   }
 
-  /* Section contact (formulaire) */
+  /* contact */
   .cta {
     background: var(--accent);
     color: #1a0d05;
@@ -1451,7 +1451,7 @@
     align-items: start;
   }
 
-  /* Formulaire de contact */
+  /* formulaire */
   form {
     display: grid;
     gap: 18px;
@@ -1597,7 +1597,7 @@
     width: fit-content;
   }
 
-  /* Pied de page */
+  /* footer */
   footer {
     background: var(--deep);
     color: var(--dmuted);
@@ -1611,7 +1611,7 @@
     flex-wrap: wrap;
   }
 
-  /* Version mobile */
+  /* mobile */
   @media (max-width:900px) {
     nav ul {
       display: none;
@@ -1668,14 +1668,14 @@
     }
   }
 
-  /* Pas de curseur personnalisé sur tactile */
+  /* tactile */
   @media (hover:none) {
     #cur {
       display: none;
     }
   }
 
-  /* Respect des personnes qui réduisent les animations */
+  /* animations réduites */
   @media (prefers-reduced-motion:reduce) {
     .pc,
     .ghost {
@@ -1709,14 +1709,14 @@
 </head>
 <body>
 <div id="bar"></div><div id="cur"></div>
-<!-- Navigation -->
+<!-- nav -->
 <nav id="nav"><div class="wrap">
   <a class="logo" href="#haut">RT<b>.</b>dev</a>
   <ul><li><a href="#services">Services</a></li><li><a href="#competences">Compétences</a></li><li><a href="#methode">Méthode</a></li><li><a href="#projet">Réalisations</a></li><li><a href="#apropos">À propos</a></li></ul>
   <a class="btn btn-main" href="#contact" data-mag>Démarrer</a>
 </div></nav>
 
-<!-- Accueil : titre, code qui se tape tout seul et aperçu -->
+<!-- hero -->
 <header class="hero" id="haut">
   <div class="blob" id="b1"></div><div class="blob" id="b2"></div><div class="wm" aria-hidden="true">RT</div>
   <div class="wrap">
@@ -1737,7 +1737,7 @@
 
 <div class="mq" aria-hidden="true"><div id="mqin"></div></div>
 
-<!-- Services et tarifs -->
+<!-- tarifs -->
 <section id="services"><div class="wrap">
   <h2 class="rv">Un seul interlocuteur. Du début à la fin.</h2>
   <p class="sub rv">Pas d’agence, pas d’intermédiaire : vous parlez directement à la personne qui code votre projet.</p>
@@ -1754,7 +1754,7 @@
   </div>
 </div></section>
 
-<!-- Compétences et chiffres -->
+<!-- compétences -->
 <section id="competences" style="padding-top:0"><div class="wrap">
   <h2 class="rv">Ce que je maîtrise.</h2>
   <p class="sub rv">Du design à la base de données, je construis chaque projet moi-même avec ces outils.</p>
@@ -1771,7 +1771,7 @@
   </div>
 </div></section>
 
-<!-- Méthode de travail en 4 étapes -->
+<!-- méthode -->
 <section class="proc" id="methode"><div class="wrap">
   <h2 class="rv">De l’idée au site en ligne, en quatre étapes.</h2>
   <div class="steps" id="steps"><div class="rail"><i></i></div>
@@ -1782,13 +1782,13 @@
   </div>
 </div></section>
 
-<!-- Réalisations : carrousel avec aperçus en direct -->
+<!-- réalisations -->
 <section class="case" id="projet"><div class="wrap">
   <h2 class="rv">Trois exemples de mon travail.</h2>
   <div class="car rv" id="car" role="region" aria-roledescription="carrousel" aria-label="Mes réalisations">
     <div class="slides">
 
-      <!-- Réalisation 1 : WebLion -->
+      <!-- weblion -->
       <article class="slide on" role="group" aria-roledescription="diapositive" aria-label="1 sur 3 : WebLion">
         <div class="grid">
           <div>
@@ -1804,7 +1804,7 @@
         </div>
       </article>
 
-      <!-- Réalisation 2 : Le Rasoir d’Or -->
+      <!-- rasoir d’or -->
       <article class="slide after" role="group" aria-roledescription="diapositive" aria-label="2 sur 3 : Le Rasoir d’Or" aria-hidden="true" inert>
         <div class="grid">
           <div>
@@ -1820,7 +1820,7 @@
         </div>
       </article>
 
-      <!-- Réalisation 3 : Mie des Neiges -->
+      <!-- mie des neiges -->
       <article class="slide after" role="group" aria-roledescription="diapositive" aria-label="3 sur 3 : Mie des Neiges" aria-hidden="true" inert>
         <div class="grid">
           <div>
@@ -1853,10 +1853,9 @@
 
 <section class="about" id="apropos"><div class="wrap grid">
 
-  <!-- Colonne gauche : la pile de cartes -->
   <div class="stack rv">
 
-    <!-- Faux gabarits (décor, cachés pour les lecteurs d'écran) -->
+    <!-- faux gabarits (déco) -->
       <div class="ghost g1" aria-hidden="true">
         <div class="gh"><i></i><span><span>Votre nom ici</span><b></b></span></div>
         <div class="gb"></div><div class="gb"></div><div class="gb"></div><div class="gb"></div>
@@ -1866,14 +1865,14 @@
         <div class="gb"></div><div class="gb"></div><div class="gb"></div><div class="gb"></div>
       </div>
 
-    <!-- Vraie carte de profil -->
+    <!-- carte de profil -->
     <div class="pc">
       <div class="ph2">
         <div><b>Rayan T.</b><span>Développeur freelance</span></div>
         <em><i></i>Disponible</em>
       </div>
 
-      <!-- Objectifs de performance (barres animées) : à remplacer par de vrais scores Lighthouse -->
+      <!-- TODO mettre les vrais scores lighthouse -->
       <div class="perf" role="group" aria-label="Objectifs de performance sur chaque site">
         <p>Ce que je vise sur chaque site</p>
         <div class="m"><span>Vitesse</span><i style="--v:.97"></i><b>95+</b></div>
@@ -1882,7 +1881,7 @@
         <div class="m"><span>Référencement</span><i style="--v:.96"></i><b>90+</b></div>
       </div>
 
-      <!-- Infos rapides -->
+      <!-- infos -->
       <dl>
         <div><dt>Spécialité</dt><dd>Sites sur mesure</dd></div>
         <div><dt>Aussi</dt><dd>IA, cybersécurité, 3D</dd></div>
@@ -1894,20 +1893,19 @@
     </div>
   </div>
 
-  <!-- Colonne droite : le texte -->
   <div>
-    <h2 class="rv">Un développeur, pas une machine à gabarits.</h2>
-    <p class="sub rv">Je m’appelle Rayan T. Je suis développeur freelance et je programme chaque site à la main pour qu’il soit rapide, solide et à votre image. Vous gardez le contrôle de votre présence en ligne.</p>
+    <h2 class="rv">Un site pensé pour vous, du début à la fin.</h2>
+    <p class="sub rv">Je m’appelle Rayan T. Je suis développeur web indépendant : je m’occupe du design, de la programmation et de la mise en ligne, pour un site rapide, solide et à l’image de votre entreprise.</p>
     <ul class="vows rv">
-      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12.5l5 5L20 6.5"/></svg><span>Chaque page est écrite à la main, sans constructeur de sites.</span></li>
-      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12.5l5 5L20 6.5"/></svg><span>Le domaine, les contenus et les accès restent à vous.</span></li>
-      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12.5l5 5L20 6.5"/></svg><span>Vous parlez à moi, pas à un robot ni à un formulaire automatique.</span></li>
+      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12.5l5 5L20 6.5"/></svg><span>Chaque page est conçue et programmée sur mesure.</span></li>
+      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12.5l5 5L20 6.5"/></svg><span>Le nom de domaine, les contenus et les accès restent à vous.</span></li>
+      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12.5l5 5L20 6.5"/></svg><span>Vous traitez directement avec moi, du premier message à la livraison.</span></li>
     </ul>
   </div>
 
 </div></section>
 
-<!-- Contact : formulaire -->
+<!-- contact -->
 <section class="cta" id="contact"><div class="wrap">
   <h2>Parlons de votre projet.</h2>
   <div class="grid">
@@ -1925,85 +1923,176 @@
       <button class="btn" type="submit" data-mag>Envoyer ma demande</button>
       <p id="ok" role="status"></p>
     </form>
-    <div class="direct"><span>Réponse personnelle, jamais automatisée.</span><a href="mailto:touhmou.1.rayan@gmail.com">touhmou.1.rayan@gmail.com</a><a href="https://instagram.com/r1t0.a11o" target="_blank" rel="noopener">Instagram : r1t0.a11o</a><span>Discord : .rtestla</span></div>
+    <div class="direct"><span>Je réponds personnellement à chaque message.</span><a href="mailto:contact@rayant.me">contact@rayant.me</a><a href="https://instagram.com/rayant.dev" target="_blank" rel="noopener">Instagram : rayant.dev</a></div>
   </div>
 </div></section>
-<!-- Pied de page -->
+<!-- footer -->
 <footer><div class="wrap"><a class="logo" href="#haut">RT<b>.</b>dev</a><p>© 2026 Rayan T. Tous droits réservés.</p></div></footer>
 
-<!-- Script du site (tout en un seul bloc) -->
+<!-- js -->
 <script>
-(function(){
-var $=function(s,e){return (e||document).querySelector(s)},$$=function(s){return [].slice.call(document.querySelectorAll(s))};
-var reduce=matchMedia('(prefers-reduced-motion:reduce)').matches,fine=matchMedia('(hover:hover)').matches;
-/* Bandeau défilant : on double la liste pour que la boucle soit sans coupure */
-var words=['Sites web','Image de marque','Animations','Mobile d’abord','Performance','Sur mesure'],m='';
-for(var i=0;i<2;i++)words.forEach(function(w){m+='<span>'+w+'</span><i>✦</i>'});
-$('#mqin').innerHTML=m+m;
-/* Apparition des blocs au scroll + compteur des chiffres */
-var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');setTimeout(function(){e.target.classList.add('done')},1500);if(e.target.dataset.n)count(e.target);io.unobserve(e.target)}})},{threshold:.2});
-$$('.rv').forEach(function(e,i){e.style.transitionDelay=(i%4)*.08+'s';io.observe(e);var b=$('b[data-n]',e);if(b){io.observe(b)}});
-function count(b){var t=+b.dataset.n,s=b.dataset.s,st=performance.now();(function f(n){var p=Math.min((n-st)/1600,1);b.textContent=Math.round(t*(1-Math.pow(1-p,4)))+s;if(p<1)requestAnimationFrame(f)})(st)}
-/* Scroll : barre de progression, nav, trait des étapes et petit effet de vitesse */
-var nav=$('#nav'),bar=$('#bar'),steps=$('#steps'),stepEls=$$('.step'),mq=$('#mqin'),lastY=0,skew=0;
-function onS(){var y=scrollY,h=document.documentElement.scrollHeight-innerHeight;bar.style.transform='scaleX('+(y/h)+')';nav.classList.toggle('s',y>40);
- var r=steps.getBoundingClientRect(),p=Math.max(0,Math.min(1,(innerHeight*.6-r.top)/r.height));$('.rail i').style.setProperty('--p',p*100+'%');
- stepEls.forEach(function(s){var q=s.getBoundingClientRect();s.classList.toggle('on',q.top<innerHeight*.6)});
- var v=y-lastY;lastY=y;skew=Math.max(-8,Math.min(8,v*.3));}
-addEventListener('scroll',onS,{passive:true});onS();
-/* Souris : taches de couleur, curseur perso, boutons magnétiques et inclinaison des cartes */
-var mx=innerWidth/2,my=innerHeight/2,bx=mx,by=my,cx=mx,cy=my,cur=$('#cur'),b1=$('#b1'),b2=$('#b2');
-addEventListener('pointermove',function(e){mx=e.clientX;my=e.clientY;if(fine)cur.style.opacity=1});
-$$('a,button,[data-tilt]').forEach(function(e){e.addEventListener('pointerenter',function(){cur.classList.add('big')});e.addEventListener('pointerleave',function(){cur.classList.remove('big')})});
-$$('[data-mag]').forEach(function(b){b.addEventListener('pointermove',function(e){var r=b.getBoundingClientRect();b.style.transform='translate('+(e.clientX-r.left-r.width/2)*.25+'px,'+(e.clientY-r.top-r.height/2)*.4+'px)'});b.addEventListener('pointerleave',function(){b.style.transform=''})});
-$$('[data-tilt]').forEach(function(t){t.addEventListener('pointermove',function(e){var r=t.getBoundingClientRect(),x=(e.clientX-r.left)/r.width,y=(e.clientY-r.top)/r.height;t.style.setProperty('--x',x*100+'%');t.style.setProperty('--y',y*100+'%');t.style.transform='rotateY('+(x-.5)*10+'deg) rotateX('+(.5-y)*10+'deg) translateY(-6px)'});t.addEventListener('pointerleave',function(){t.style.transform=''})});
-if(!reduce)(function loop(){bx+=(mx-bx)*.05;by+=(my-by)*.05;cx+=(mx-cx)*.25;cy+=(my-cy)*.25;
- b1.style.transform='translate('+(bx*.15)+'px,'+(by*.15)+'px)';b2.style.transform='translate('+(-bx*.12)+'px,'+(-by*.12)+'px)';
- cur.style.transform='translate('+cx+'px,'+cy+'px)';requestAnimationFrame(loop)})();
-/* Code qui se tape tout seul dans le hero, avec la coloration et l’aperçu qui suit */
-var code=$('#code'),prev=$('#prev').children,src='<h1>Votre entreprise</h1>\n<p>Un site clair, rapide,\n   fait pour convertir.</p>\n<a href="#contact">Nous joindre</a>',marks=[0,22,60];
-function esc(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;')}
-function color(s){return esc(s).replace(/(&lt;\/?[a-z0-9]+)/g,'<span class="k">$1</span>').replace(/(href|&quot;#contact&quot;)/g,'<span class="c">$1</span>')}
-function type(){var i=0;[].forEach.call(prev,function(p){p.classList.remove('on')});
- (function t(){i++;code.innerHTML=color(src.slice(0,i))+'<span class="caret"></span>';
-  [].forEach.call(prev,function(p,k){if(i>=[src.indexOf('</h1>')+5,src.indexOf('</p>')+4,src.length][k])p.classList.add('on')});
-  if(i<src.length)setTimeout(t,45);else setTimeout(type,4200)})()}
-if(reduce){code.textContent=src;[].forEach.call(prev,function(p){p.classList.add('on')})}else setTimeout(type,1500);
-/* Sur tactile, les sites de démo défilent tout seuls quand ils sont visibles */
-if(!fine)$$('.site').forEach(function(el){new IntersectionObserver(function(es){el.classList.toggle('auto',es[0].isIntersecting)},{threshold:.6}).observe(el)});
-/* Aperçus en direct : on réduit chaque iframe pour qu’elle tienne dans son cadre */
-function fit(){$$('.site').forEach(function(box){var fr=$('iframe',box),sc=box.clientWidth/1280;fr.style.height=((box.clientHeight-34)/sc)+'px';fr.style.transform='scale('+sc+')'})}fit();addEventListener('resize',fit);
-/* Carrousel des réalisations : flèches, onglets, clavier et balayage au doigt */
-var car=$('#car'),slides=$$('#car .slide'),tabs=$$('#car .tabs button'),cur_i=0;
-function go(n,dir){n=(n+slides.length)%slides.length;if(n===cur_i)return;
- var out=slides[cur_i],inn=slides[n];
- inn.style.transition='none';inn.classList.remove('before','after');inn.classList.add(dir>0?'after':'before');void inn.offsetWidth;inn.style.transition='';
- out.classList.remove('on');out.classList.add(dir>0?'before':'after');out.setAttribute('aria-hidden','true');out.inert=true;
- inn.classList.remove('before','after');inn.classList.add('on');inn.removeAttribute('aria-hidden');inn.inert=false;
- tabs.forEach(function(t,k){t.setAttribute('aria-selected',k===n)});cur_i=n;fit()}
-$('#prevS').addEventListener('click',function(){go(cur_i-1,-1)});
-$('#nextS').addEventListener('click',function(){go(cur_i+1,1)});
-tabs.forEach(function(t,k){t.addEventListener('click',function(){go(k,k>cur_i?1:-1)})});
-car.addEventListener('keydown',function(e){if(e.target.closest('iframe'))return;if(e.key==='ArrowLeft'){go(cur_i-1,-1)}else if(e.key==='ArrowRight'){go(cur_i+1,1)}});
-var tx=0,ty=0;
-car.addEventListener('touchstart',function(e){tx=e.touches[0].clientX;ty=e.touches[0].clientY},{passive:true});
-car.addEventListener('touchend',function(e){var dx=e.changedTouches[0].clientX-tx,dy=e.changedTouches[0].clientY-ty;if(Math.abs(dx)>60&&Math.abs(dx)>Math.abs(dy)*1.5)go(cur_i+(dx<0?1:-1),dx<0?1:-1)},{passive:true});
-/* Formulaire : vérification, envoi via FormSubmit, sinon ouverture du courriel en secours */
-var F=$('#f'),ok=$('#ok'),sb=F.querySelector('button'),EMAIL='touhmou.1.rayan@gmail.com';
-F.addEventListener('submit',function(e){e.preventDefault();ok.className='';
- if(F._honey.value)return;
- var d={nom:F.nom.value.trim(),courriel:F.courriel.value.trim(),service:F.service.value,msg:F.msg.value.trim()};
- if(!d.nom||!/^\S+@\S+\.\S+$/.test(d.courriel)){ok.className='err';ok.textContent='Ajoutez votre nom et un courriel valide pour envoyer la demande.';return}
- sb.disabled=true;sb.classList.add('load');ok.textContent='';
- var fd=new FormData();fd.append('Nom',d.nom);fd.append('Courriel',d.courriel);fd.append('Service',d.service);fd.append('Message',d.msg||'(aucun message)');
- fd.append('_subject','Nouvelle demande de '+d.nom+' (site RT Dev)');fd.append('_replyto',d.courriel);fd.append('_captcha','false');fd.append('_template','table');
- function end(){sb.disabled=false;sb.classList.remove('load')}
- fetch('https://formsubmit.co/ajax/'+EMAIL,{method:'POST',headers:{Accept:'application/json'},body:fd})
- .then(function(r){if(!r.ok)throw 0;return r.json()})
- .then(function(j){if(j.success===false||j.success==='false')throw 0;end();F.reset();ok.className='good';ok.textContent='Merci ! Votre message est envoyé. Je vous réponds personnellement très bientôt.'})
- .catch(function(){end();ok.className='good';ok.textContent='Votre application courriel s’ouvre avec le message prêt à envoyer.';
-  location.href='mailto:'+EMAIL+'?subject='+encodeURIComponent('Nouveau projet')+'&body='+encodeURIComponent('Nom : '+d.nom+'\nCourriel : '+d.courriel+'\nService : '+d.service+'\n\n'+d.msg)})});
-})();
+  (function () {
+    var $ = function (s, e) { return (e || document).querySelector(s); }, $$ = function (s) { return [].slice.call(document.querySelectorAll(s)); };
+    var reduce = matchMedia('(prefers-reduced-motion:reduce)').matches, sourisPrecise = matchMedia('(hover:hover)').matches;
+    /* bandeau : je double la liste pour que ça coupe pas */
+    var words = ['Sites web', 'Image de marque', 'Animations', 'Mobile d’abord', 'Performance', 'Sur mesure'], m = '';
+    for (var i = 0; i < 2; i++)
+      words.forEach(function (w) { m += '<span>' + w + '</span><i>✦</i>'; });
+    $('#mqin').innerHTML = m + m;
+    /* apparition au scroll + compteurs */
+    var observer = new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) {
+      e.target.classList.add('in');
+      setTimeout(function () { e.target.classList.add('done'); }, 1500);
+      if (e.target.dataset.n)
+        count(e.target);
+      observer.unobserve(e.target);
+    } }); }, { threshold: .2 });
+    $$('.rv').forEach(function (e, i) { e.style.transitionDelay = (i % 4) * .08 + 's'; observer.observe(e); var b = $('b[data-n]', e); if (b) {
+      observer.observe(b);
+    } });
+    function count(b) { var t = +b.dataset.n, s = b.dataset.s, st = performance.now(); (function f(n) { var p = Math.min((n - st) / 1600, 1); b.textContent = Math.round(t * (1 - Math.pow(1 - p, 4))) + s; if (p < 1)
+      requestAnimationFrame(f); })(st); }
+    /* scroll (barre, nav, étapes) */
+    var nav = $('#nav'), bar = $('#bar'), steps = $('#steps'), stepEls = $$('.step'), mq = $('#mqin'), lastY = 0, skew = 0;
+    function onScroll() {
+      var y = scrollY, h = document.documentElement.scrollHeight - innerHeight;
+      bar.style.transform = 'scaleX(' + (y / h) + ')';
+      nav.classList.toggle('s', y > 40);
+      var r = steps.getBoundingClientRect(), p = Math.max(0, Math.min(1, (innerHeight * .6 - r.top) / r.height));
+      $('.rail i').style.setProperty('--p', p * 100 + '%');
+      stepEls.forEach(function (s) { var q = s.getBoundingClientRect(); s.classList.toggle('on', q.top < innerHeight * .6); });
+      var v = y - lastY;
+      lastY = y;
+      skew = Math.max(-8, Math.min(8, v * .3));
+    }
+    addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+    /* souris */
+    var mx = innerWidth / 2, my = innerHeight / 2, bx = mx, by = my, cx = mx, cy = my, cur = $('#cur'), b1 = $('#b1'), b2 = $('#b2');
+    addEventListener('pointermove', function (e) { mx = e.clientX; my = e.clientY; if (sourisPrecise)
+      cur.style.opacity = 1; });
+    $$('a,button,[data-tilt]').forEach(function (e) { e.addEventListener('pointerenter', function () { cur.classList.add('big'); }); e.addEventListener('pointerleave', function () { cur.classList.remove('big'); }); });
+    $$('[data-mag]').forEach(function (b) { b.addEventListener('pointermove', function (e) { var r = b.getBoundingClientRect(); b.style.transform = 'translate(' + (e.clientX - r.left - r.width / 2) * .25 + 'px,' + (e.clientY - r.top - r.height / 2) * .4 + 'px)'; }); b.addEventListener('pointerleave', function () { b.style.transform = ''; }); });
+    $$('[data-tilt]').forEach(function (t) { t.addEventListener('pointermove', function (e) { var r = t.getBoundingClientRect(), x = (e.clientX - r.left) / r.width, y = (e.clientY - r.top) / r.height; t.style.setProperty('--x', x * 100 + '%'); t.style.setProperty('--y', y * 100 + '%'); t.style.transform = 'rotateY(' + (x - .5) * 10 + 'deg) rotateX(' + (.5 - y) * 10 + 'deg) translateY(-6px)'; }); t.addEventListener('pointerleave', function () { t.style.transform = ''; }); });
+    if (!reduce)
+      (function loop() {
+        bx += (mx - bx) * .05;
+        by += (my - by) * .05;
+        cx += (mx - cx) * .25;
+        cy += (my - cy) * .25;
+        b1.style.transform = 'translate(' + (bx * .15) + 'px,' + (by * .15) + 'px)';
+        b2.style.transform = 'translate(' + (-bx * .12) + 'px,' + (-by * .12) + 'px)';
+        cur.style.transform = 'translate(' + cx + 'px,' + cy + 'px)';
+        requestAnimationFrame(loop);
+      })();
+    /* le code qui se tape dans le hero */
+    var code = $('#code'), prev = $('#prev').children, src = '<h1>Votre entreprise</h1>\n<p>Un site clair, rapide,\n   fait pour convertir.</p>\n<a href="#contact">Nous joindre</a>', marks = [0, 22, 60];
+    function esc(s) { return s.replace(/&/g, '&amp;').replace(/</g, '&lt;'); }
+    function color(s) { return esc(s).replace(/(&lt;\/?[a-z0-9]+)/g, '<span class="k">$1</span>').replace(/(href|&quot;#contact&quot;)/g, '<span class="c">$1</span>'); }
+    function type() {
+      var i = 0;
+      [].forEach.call(prev, function (p) { p.classList.remove('on'); });
+      (function t() {
+        i++;
+        code.innerHTML = color(src.slice(0, i)) + '<span class="caret"></span>';
+        [].forEach.call(prev, function (p, k) { if (i >= [src.indexOf('</h1>') + 5, src.indexOf('</p>') + 4, src.length][k])
+          p.classList.add('on'); });
+        if (i < src.length)
+          setTimeout(t, 45);
+        else
+          setTimeout(type, 4200);
+      })();
+    }
+    if (reduce) {
+      code.textContent = src;
+      [].forEach.call(prev, function (p) { p.classList.add('on'); });
+    }
+    else
+      setTimeout(type, 1500);
+    /* tactile : les démos défilent seules */
+    if (!sourisPrecise)
+      $$('.site').forEach(function (el) { new IntersectionObserver(function (es) { el.classList.toggle('auto', es[0].isIntersecting); }, { threshold: .6 }).observe(el); });
+    /* iframes : je réduis pour que ça rentre */
+    function fit() { $$('.site').forEach(function (box) { var fr = $('iframe', box), sc = box.clientWidth / 1280; fr.style.height = ((box.clientHeight - 34) / sc) + 'px'; fr.style.transform = 'scale(' + sc + ')'; }); }
+    fit();
+    addEventListener('resize', fit);
+    /* carrousel */
+    var car = $('#car'), slides = $$('#car .slide'), tabs = $$('#car .tabs button'), indexActif = 0;
+    function go(n, dir) {
+      n = (n + slides.length) % slides.length;
+      if (n === indexActif)
+        return;
+      var sortant = slides[indexActif], entrant = slides[n];
+      entrant.style.transition = 'none';
+      entrant.classList.remove('before', 'after');
+      entrant.classList.add(dir > 0 ? 'after' : 'before');
+      void entrant.offsetWidth;
+      entrant.style.transition = '';
+      sortant.classList.remove('on');
+      sortant.classList.add(dir > 0 ? 'before' : 'after');
+      sortant.setAttribute('aria-hidden', 'true');
+      sortant.inert = true;
+      entrant.classList.remove('before', 'after');
+      entrant.classList.add('on');
+      entrant.removeAttribute('aria-hidden');
+      entrant.inert = false;
+      tabs.forEach(function (t, k) { t.setAttribute('aria-selected', k === n); });
+      indexActif = n;
+      fit();
+    }
+    $('#prevS').addEventListener('click', function () { go(indexActif - 1, -1); });
+    $('#nextS').addEventListener('click', function () { go(indexActif + 1, 1); });
+    tabs.forEach(function (t, k) { t.addEventListener('click', function () { go(k, k > indexActif ? 1 : -1); }); });
+    car.addEventListener('keydown', function (e) { if (e.target.closest('iframe'))
+      return; if (e.key === 'ArrowLeft') {
+      go(indexActif - 1, -1);
+    }
+    else if (e.key === 'ArrowRight') {
+      go(indexActif + 1, 1);
+    } });
+    var debutX = 0, debutY = 0;
+    car.addEventListener('touchstart', function (e) { debutX = e.touches[0].clientX; debutY = e.touches[0].clientY; }, { passive: true });
+    car.addEventListener('touchend', function (e) { var dx = e.changedTouches[0].clientX - debutX, dy = e.changedTouches[0].clientY - debutY; if (Math.abs(dx) > 60 && Math.abs(dx) > Math.abs(dy) * 1.5)
+      go(indexActif + (dx < 0 ? 1 : -1), dx < 0 ? 1 : -1); }, { passive: true });
+    /* formulaire (formsubmit, sinon mailto) */
+    var formulaire = $('#f'), retour = $('#ok'), btnEnvoi = formulaire.querySelector('button'), EMAIL = 'contact@rayant.me';
+    formulaire.addEventListener('submit', function (e) {
+      e.preventDefault();
+      retour.className = '';
+      if (formulaire._honey.value)
+        return;
+      var d = { nom: formulaire.nom.value.trim(), courriel: formulaire.courriel.value.trim(), service: formulaire.service.value, msg: formulaire.msg.value.trim() };
+      if (!d.nom || !/^\S+@\S+\.\S+$/.test(d.courriel)) {
+        retour.className = 'err';
+        retour.textContent = 'Ajoutez votre nom et un courriel valide pour envoyer la demande.';
+        return;
+      }
+      btnEnvoi.disabled = true;
+      btnEnvoi.classList.add('load');
+      retour.textContent = '';
+      var fd = new FormData();
+      fd.append('Nom', d.nom);
+      fd.append('Courriel', d.courriel);
+      fd.append('Service', d.service);
+      fd.append('Message', d.msg || '(aucun message)');
+      fd.append('_subject', 'Nouvelle demande de ' + d.nom + ' (site RT Dev)');
+      fd.append('_replyto', d.courriel);
+      fd.append('_captcha', 'false');
+      fd.append('_template', 'table');
+      function end() { btnEnvoi.disabled = false; btnEnvoi.classList.remove('load'); }
+      fetch('https://formsubmit.co/ajax/' + EMAIL, { method: 'POST', headers: { Accept: 'application/json' }, body: fd })
+        .then(function (r) { if (!r.ok)
+        throw 0; return r.json(); })
+        .then(function (j) { if (j.success === false || j.success === 'false')
+        throw 0; end(); formulaire.reset(); retour.className = 'good'; retour.textContent = 'Merci ! Votre message est envoyé. Je vous réponds personnellement très bientôt.'; })
+        .catch(function () {
+        end();
+        retour.className = 'good';
+        retour.textContent = 'Votre application courriel s’ouvre avec le message prêt à envoyer.';
+        location.href = 'mailto:' + EMAIL + '?subject=' + encodeURIComponent('Nouveau projet') + '&body=' + encodeURIComponent('Nom : ' + d.nom + '\nCourriel : ' + d.courriel + '\nService : ' + d.service + '\n\n' + d.msg);
+      });
+    });
+  })();
 </script>
 </body>
 </html>
