@@ -2055,11 +2055,15 @@
     car.addEventListener('touchstart', function (e) { debutX = e.touches[0].clientX; debutY = e.touches[0].clientY; }, { passive: true });
     car.addEventListener('touchend', function (e) { var dx = e.changedTouches[0].clientX - debutX, dy = e.changedTouches[0].clientY - debutY; if (Math.abs(dx) > 60 && Math.abs(dx) > Math.abs(dy) * 1.5)
       go(indexActif + (dx < 0 ? 1 : -1), dx < 0 ? 1 : -1); }, { passive: true });
-    /* formulaire (envoi par formsubmit) */
-    var formulaire = $('#f'), retour = $('#ok'), btnEnvoi = formulaire.querySelector('button'), EMAIL = 'contact@rayant.me';
+    /* formulaire (envoi par web3forms) */
+    var formulaire = $('#f'), retour = $('#ok'), btnEnvoi = formulaire.querySelector('button');
+    // la clé web3forms (elle peut être publique, c'est normal)
+    var CLE_WEB3FORMS = 'COLLE_TA_CLE_ICI';
+    var EMAIL = 'contact@rayant.me'; // seulement pour le plan B (mailto)
     formulaire.addEventListener('submit', function (e) {
       e.preventDefault();
       retour.className = '';
+      // champ piège pour les robots
       if (formulaire._honey.value)
         return;
       var d = { nom: formulaire.nom.value.trim(), courriel: formulaire.courriel.value.trim(), service: formulaire.service.value, msg: formulaire.msg.value.trim() };
@@ -2071,26 +2075,39 @@
       btnEnvoi.disabled = true;
       btnEnvoi.classList.add('load');
       retour.textContent = '';
-      var fd = new FormData();
-      fd.append('Nom', d.nom);
-      fd.append('Courriel', d.courriel);
-      fd.append('Service', d.service);
-      fd.append('Message', d.msg || '(aucun message)');
-      fd.append('_subject', 'Nouvelle demande de ' + d.nom + ' (site RT Dev)');
-      fd.append('_replyto', d.courriel);
-      fd.append('_captcha', 'false');
-      fd.append('_template', 'table');
       function end() { btnEnvoi.disabled = false; btnEnvoi.classList.remove('load'); }
-      fetch('https://formsubmit.co/ajax/' + EMAIL, { method: 'POST', headers: { Accept: 'application/json' }, body: fd })
-        .then(function (r) { if (!r.ok)
-        throw 0; return r.json(); })
-        .then(function (j) { if (j.success === false || j.success === 'false')
-        throw 0; end(); formulaire.reset(); retour.className = 'good'; retour.textContent = 'Merci ! Votre message est envoyé. Je vous réponds personnellement très bientôt.'; })
-        .catch(function () {
-        end();
-        retour.className = 'err';
-        retour.textContent = 'Votre message n’a pas pu partir. Réessayez dans un moment ou envoyez-moi un texto au (438) 814-3231.';
-      });
+      fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify({
+          access_key: CLE_WEB3FORMS,
+          subject: 'Nouvelle demande de ' + d.nom + ' (site RT Dev)',
+          from_name: 'Site RT Dev',
+          name: d.nom,
+          email: d.courriel,
+          replyto: d.courriel,
+          service: d.service,
+          message: d.msg || '(aucun message)'
+        })
+      })
+        .then(function (r) { return r.json(); })
+        .then(function (j) {
+          if (!j.success)
+            throw new Error(j.message);
+          end();
+          formulaire.reset();
+          retour.className = 'good';
+          retour.textContent = 'Merci ! Votre message est envoyé. Je vous réponds personnellement très bientôt.';
+        })
+        .catch(function (erreur) {
+          console.log('web3forms :', erreur); // la vraie raison est ici
+          end();
+          retour.className = 'err';
+          retour.textContent = 'L’envoi direct a échoué. Votre application courriel s’ouvre avec le message prêt à envoyer.';
+          // plan B : on ouvre le courriel déjà rempli pour ne perdre aucun message
+          var corps = 'Nom : ' + d.nom + '\nCourriel : ' + d.courriel + '\nService : ' + d.service + '\n\n' + d.msg;
+          window.location.href = 'mailto:' + EMAIL + '?subject=' + encodeURIComponent('Nouveau projet') + '&body=' + encodeURIComponent(corps);
+        });
     });
   })();
 </script>
