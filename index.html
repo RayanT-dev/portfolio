@@ -1114,6 +1114,18 @@
     background: #4a0f1a;
     color: #ffe9b8;
   }
+  .site.pc .long .a {
+    background: linear-gradient(160deg,#27425c,#14232f);
+    color: #f2f5f7;
+  }
+  .site.pc .long .b {
+    background: #eef1f3;
+    color: #14232f;
+  }
+  .site.pc .long .c {
+    background: #d9a441;
+    color: #14232f;
+  }
 
   /* à propos */
   .about {
@@ -1785,12 +1797,12 @@
 
 <!-- réalisations -->
 <section class="case" id="projet"><div class="wrap">
-  <h2 class="rv">Trois exemples de mon travail.</h2>
+  <h2 class="rv">Quatre exemples de mon travail.</h2>
   <div class="car rv" id="car" role="region" aria-roledescription="carrousel" aria-label="Mes réalisations">
     <div class="slides">
 
       <!-- weblion -->
-      <article class="slide on" role="group" aria-roledescription="diapositive" aria-label="1 sur 3 : WebLion">
+      <article class="slide on" role="group" aria-roledescription="diapositive" aria-label="1 sur 4 : WebLion">
         <div class="grid">
           <div>
             <ul><li><b><a href="https://weblioncommunauty.github.io/site/" target="_blank" rel="noopener">WebLion</a></b><span>Un site d’entreprise pensé pour la conversion et l’expérience sur mobile.</span></li><li><b>Ce que j’ai fait</b><span>Le design, la programmation et la mise en ligne, du début à la fin.</span></li><li><b>À vous de jouer</b><span>Parcourez le site directement dans la fenêtre à côté.</span></li></ul>
@@ -1806,7 +1818,7 @@
       </article>
 
       <!-- rasoir d’or -->
-      <article class="slide after" role="group" aria-roledescription="diapositive" aria-label="2 sur 3 : Le Rasoir d’Or" aria-hidden="true" inert>
+      <article class="slide after" role="group" aria-roledescription="diapositive" aria-label="2 sur 4 : Le Rasoir d’Or" aria-hidden="true" inert>
         <div class="grid">
           <div>
             <ul><li><b><a href="https://rayant-dev.github.io/rasoirdor/" target="_blank" rel="noopener">Le Rasoir d’Or</a></b><span>Un site de barbier de quartier : tarifs lisibles, horaires et un bouton pour réserver sa chaise.</span></li><li><b>Ce que j’ai fait</b><span>Le design, les textes et la programmation, pensés pour le mobile.</span></li><li><b>Salon fictif</b><span>Une maquette qui montre ce que je ferais pour votre commerce de quartier.</span></li></ul>
@@ -1822,7 +1834,7 @@
       </article>
 
       <!-- mie des neiges -->
-      <article class="slide after" role="group" aria-roledescription="diapositive" aria-label="3 sur 3 : Mie des Neiges" aria-hidden="true" inert>
+      <article class="slide after" role="group" aria-roledescription="diapositive" aria-label="3 sur 4 : Mie des Neiges" aria-hidden="true" inert>
         <div class="grid">
           <div>
             <ul><li><b><a href="https://rayant-dev.github.io/miedesneiges/" target="_blank" rel="noopener">Mie des Neiges</a></b><span>Un site de boulangerie à Côte-des-Neiges : fournée du jour, heures de sortie du four et animations qui lèvent comme de la pâte.</span></li><li><b>Ce que j’ai fait</b><span>Le design, les illustrations, les animations et la programmation.</span></li><li><b>Boulangerie fictive</b><span>Une maquette pour montrer ce que je ferais pour une boulangerie de quartier.</span></li></ul>
@@ -1837,12 +1849,29 @@
         </div>
       </article>
 
+      <!-- peinture cadieux -->
+      <article class="slide after" role="group" aria-roledescription="diapositive" aria-label="4 sur 4 : Peinture Cadieux" aria-hidden="true" inert>
+        <div class="grid">
+          <div>
+            <ul><li><b><a href="https://rayant-dev.github.io/peintrebatiment/" target="_blank" rel="noopener">Peinture Cadieux</a></b><span>Un site de peintres en bâtiment : services intérieur et extérieur, comparateur avant et après, essai de couleurs et demande de soumission gratuite.</span></li><li><b>Ce que j’ai fait</b><span>Le design, les textes et la programmation, pensés pour le mobile.</span></li><li><b>Entreprise fictive</b><span>Une maquette pour montrer ce que je ferais pour un entrepreneur en peinture.</span></li></ul>
+            <a class="btn" href="#contact" data-mag>Obtenir le même résultat</a>
+          </div>
+          <div class="site pc" role="group" aria-label="Aperçu du site Peinture Cadieux">
+            <div class="bar2"><span></span><span></span><span></span><b>rayant-dev.github.io/peintrebatiment</b></div>
+            <div class="long" aria-hidden="true"><div class="a"><h4>Peinture Cadieux</h4><p>Repeints comme il faut. Propres chaque soir.</p></div><div class="b"><h4>Intérieur ou extérieur</h4><p>Une seule équipe, du début à la fin.</p></div><div class="c"><h4>Soumission gratuite</h4><p>Prix ferme remis sur place.</p></div></div>
+            <iframe src="https://rayant-dev.github.io/peintrebatiment/" title="Aperçu en direct du site Peinture Cadieux" loading="lazy" referrerpolicy="no-referrer"></iframe>
+            <a class="hint" href="https://rayant-dev.github.io/peintrebatiment/" target="_blank" rel="noopener">Ouvrir en plein écran ↗</a>
+          </div>
+        </div>
+      </article>
+
     </div>
     <div class="ctl">
       <div class="tabs" role="tablist" aria-label="Choisir une réalisation">
         <button type="button" role="tab" aria-selected="true">WebLion</button>
         <button type="button" role="tab" aria-selected="false">Le Rasoir d’Or</button>
         <button type="button" role="tab" aria-selected="false">Mie des Neiges</button>
+        <button type="button" role="tab" aria-selected="false">Peinture Cadieux</button>
       </div>
       <div class="arrows">
         <button type="button" id="prevS" aria-label="Réalisation précédente"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M11 5l-7 7 7 7"/></svg></button>
